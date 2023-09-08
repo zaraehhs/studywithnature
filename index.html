@@ -22,7 +22,7 @@
                     <img class="sound-image" src="images/sample.JPEG" alt="Norway">
                     <p class="sound-title"> Soft Rain Sounds </p>
                     <p class="image-location"> Oslo, Norway </p>
-                    <audio data-sound-id="0" src="https://audio.jukehost.co.uk/xcb125pumHo2Lw4S9bEzfuSsWTToAmva" loop></audio>
+                    <audio loop data-sound-id="0" src="https://audio.jukehost.co.uk/xcb125pumHo2Lw4S9bEzfuSsWTToAmva"></audio>
 
                     <div class="sound-buttons">
                         <button id="previous"><i class="material-icons">fast_rewind</i></button>
@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="volume-input">
-                        <input type="range">
+                        <input type="range" id="volume" min="0" max="1" step="0.01">
                     </div>
                 </div>
             </div>
@@ -115,12 +115,19 @@
             document.querySelector('#playPause > i').innerHTML = 'pause';
         }
 
+        function changeVolume(e) {
+            const audio = document.querySelector('audio');
+            audio.volume = this.value;
+        }
+
         const playPauseButton = document.querySelector('#playPause');
         const previousButton = document.querySelector('#previous');
         const nextButton = document.querySelector('#next');
+        const volumeInput = document.querySelector('#volume');
         playPauseButton.addEventListener('click', playPause);
         previousButton.addEventListener('click', playPrevious);
         nextButton.addEventListener('click', playNext);
+        volumeInput.addEventListener('change', changeVolume);
     </script>
 </body>
 
