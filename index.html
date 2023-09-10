@@ -15,7 +15,7 @@
         <div class="main">
             <div class="title-soundcontainer">
                 <div>
-                    <h1 class="title">Study in Nature</h1>
+                    <h1 class="title">Study with Nature</h1>
                 </div>
 
                 <div class="sound-container">
@@ -44,10 +44,39 @@
                         <li> Birds </li>
                     </ul>
                 </div>
-                <div class="pomodoro-container"></div>
+
+                <div class="pomodoro-container">
+                    <div id="pomodoro-start"> 
+                    <h1> Pomodoro </h1>
+                    <p> Set times to plan your study session </p>
+
+                    <form> 
+                        <label for="sessionTime"> Session time: </label>
+                        <input type="number" id="sessionTime" min="1" max="200" placeholder="60 mins">
+        
+                        <label for="breakTime"> Break time: </label>
+                        <div class="break-time-select">
+                            <input type="button" class="time-select" value="10">
+                            <input type="button" class="time-select" value="15">
+                            <input type="button" class="time-select" value="25">
+                        </div>
+        
+                        <input id="submit" type="submit" value="Start" >
+        
+                    </form>
+                    </div>
+
+                    <div id="pomodoro-during"> 
+                        <h1> Pomodoro </h1>
+                        <p> Study Session Time </p>
+
+                        <button id="pausePomodoro"> Pause </button>
+                        <button id="endPomodoro"> End Session </button>
+                    </div>
+                </div>
+
             </div>
         </div>
-
     </div>
 
 
@@ -119,6 +148,29 @@
             const audio = document.querySelector('audio');
             audio.volume = this.value;
         }
+
+        // Pomodoro Code below
+
+        let startButton = document.getElementById('submit');
+        let endButton = document.getElementById('endPomodoro');
+        let startSection = document.getElementById('pomodoro-start');
+        let duringSection = document.getElementById('pomodoro-during');
+        startButton.addEventListener('click', startPomodoro);
+        endButton.addEventListener('click', endPomodoro);
+
+        function startPomodoro() {
+            startSection.style.display= "none";
+            event.preventDefault();
+            duringSection.style.display= "block";
+        }
+
+        function endPomodoro(){
+            duringSection.style.display= "none";
+            event.preventDefault();
+            startSection.style.display= "block";
+        }
+
+        //
 
         const playPauseButton = document.querySelector('#playPause');
         const previousButton = document.querySelector('#previous');
