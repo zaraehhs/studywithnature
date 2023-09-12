@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study with Nature </title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sound-style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
@@ -26,7 +27,7 @@
 
                     <div class="sound-buttons">
                         <button id="previous"><i class="material-icons">fast_rewind</i></button>
-                        <button id="playPause"><i class="material-icons">play_arrow</i></button>
+                        <button id="play-pause"><i class="material-icons">play_arrow</i></button>
                         <button id="next"><i class="material-icons">fast_forward</i></button>
                     </div>
 
@@ -38,16 +39,11 @@
 
             <div class="list-pomodoro">
                 <div class="list-container">
-                    <ul>
-                        <li> Waterfall </li>
-                        <li> Rainfall </li>
-                        <li> Birds </li>
-                    </ul>
+                    <ul id="sounds-list"></ul>
                 </div>
                 <div class="pomodoro-container"></div>
             </div>
         </div>
-
     </div>
 
 
@@ -67,15 +63,27 @@
             },
         ];
 
+        function loadSoundsList() {
+            const soundsList = document.querySelector('#sounds-list');
+            for (let i = 0; i < soundData.length; i++) {
+                const li = `<li data-sound-id=${i} onclick="playSelectedSound(${i})">
+                                <img class="list-sound-image" src="${soundData[i].imgUrl}">
+                                <p class="list-sound-title">${soundData[i].soundTitle}</p>
+                                <p class="list-image-location">${soundData[i].imgLocation}</p>
+                            </li>`;
+                soundsList.innerHTML += li;
+            };
+        }
+
         function playPause(e) {
-            const state = document.querySelector('#playPause > i').innerHTML;
+            const state = document.querySelector('#play-pause > i').innerHTML;
             const audio = document.querySelector('audio');
             if (state === 'play_arrow') {
                 audio.play();
-                document.querySelector('#playPause > i').innerHTML = 'pause';
+                document.querySelector('#play-pause > i').innerHTML = 'pause';
             } else if (state === 'pause') {
                 audio.pause();
-                document.querySelector('#playPause > i').innerHTML = 'play_arrow';
+                document.querySelector('#play-pause > i').innerHTML = 'play_arrow';
             }
         }
 
@@ -97,9 +105,7 @@
             } else {
                 newSoundId += 1;
             }
-            updateSoundInfo(newSoundId);
-            document.querySelector('audio').play();
-            document.querySelector('#playPause > i').innerHTML = 'pause';
+            playSelectedSound(newSoundId);
         }
 
         function playNext(e) {
@@ -112,7 +118,13 @@
             }
             updateSoundInfo(newSoundId);
             document.querySelector('audio').play();
-            document.querySelector('#playPause > i').innerHTML = 'pause';
+            document.querySelector('#play-pause > i').innerHTML = 'pause';
+        }
+
+        function playSelectedSound(id) {
+            updateSoundInfo(id);
+            document.querySelector('audio').play();
+            document.querySelector('#play-pause > i').innerHTML = 'pause';
         }
 
         function changeVolume(e) {
@@ -120,7 +132,7 @@
             audio.volume = this.value;
         }
 
-        const playPauseButton = document.querySelector('#playPause');
+        const playPauseButton = document.querySelector('#play-pause');
         const previousButton = document.querySelector('#previous');
         const nextButton = document.querySelector('#next');
         const volumeInput = document.querySelector('#volume');
@@ -128,6 +140,7 @@
         previousButton.addEventListener('click', playPrevious);
         nextButton.addEventListener('click', playNext);
         volumeInput.addEventListener('change', changeVolume);
+        loadSoundsList();
     </script>
 </body>
 
