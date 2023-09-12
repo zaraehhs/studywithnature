@@ -56,25 +56,64 @@ body{
 
 }
 
+.pomodoro-container{
+    background: rgba(239, 242, 246, 0.71);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding: 10px;
+
+}
+.pomodoro-container h1{
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+.pomodoro-container p{
+    margin-top:0px;
+}
+.pomodoro-container p, label {
+    font-size: 12px;
+}
+
+#timeDisplay{
+    font-size: 24px;
+}
+
+form input {
+    border-radius: 16px;
+    padding:8px;
+    border: none;
+}
+#submit {
+    background-color: black;
+    padding:8px;
+    border-radius: 16px;
+    color:white;
+    border:none;
+    font-size: 12px;
+    text-align: center;
+    margin: auto;
+    width:100%;
+}
+form div{
+    display: flex;
+    flex-direction: column;
+
+}
+
+form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
 #pomodoro-during {
     display:none; 
 }
-.break-time-select{
-    display: flex;
-    gap: 10px;
+
+.body-spacing {
+    margin-bottom:12px;
 }
 
-.break-time-select input {
-    background-color: white;
-    color: black;
-    border-radius: 16px;
-    padding:12px; 
-}
-
-.break-time-select input:hover, .time-select {
-    background-color: black;
-    color: white; 
-}
 
 @media (max-width:580px){
     .main{

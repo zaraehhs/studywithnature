@@ -48,27 +48,34 @@
                 <div class="pomodoro-container">
                     <div id="pomodoro-start"> 
                     <h1> Pomodoro </h1>
-                    <p> Set times to plan your study session </p>
+                    <p class="body-spacing"> Set times to plan your study session </p>
 
-                    <form> 
-                        <label for="sessionTime"> Session time: </label>
-                        <input type="number" id="sessionTime" min="1" max="200" placeholder="60 mins">
-        
-                        <label for="breakTime"> Break time: </label>
-                        <div class="break-time-select">
-                            <input type="button" class="time-select" value="10">
-                            <input type="button" class="time-select" value="15">
-                            <input type="button" class="time-select" value="25">
+                    <form class="body-spacing"> 
+                        <div>
+                            <label for="sessionTime"> Session time: </label>
+                            <input type="number" id="sessionTime" min="1" max="200">
                         </div>
+
+                        <div>
+                            <label for="sessionTime"> Short Break: </label>
+                            <input type="number" id="shortBreak" min="1" max="200">
+                        </div>
+                        
+                        <div>
+                            <label for="sessionTime"> Long Break: </label>
+                            <input type="number" id="longBreak" min="1" max="200">
+                        </div>    
         
-                        <input id="submit" type="submit" value="Start" >
-        
+                    
                     </form>
+                    <input id="submit" type="submit" value="Start" >
                     </div>
 
                     <div id="pomodoro-during"> 
                         <h1> Pomodoro </h1>
-                        <p> Study Session Time </p>
+                        <p id="sessionDescription"> Study Session Time </p>
+
+                        <h2 id="timeDisplay"></h2>
 
                         <button id="pausePomodoro"> Pause </button>
                         <button id="endPomodoro"> End Session </button>
@@ -155,19 +162,95 @@
         let endButton = document.getElementById('endPomodoro');
         let startSection = document.getElementById('pomodoro-start');
         let duringSection = document.getElementById('pomodoro-during');
-        startButton.addEventListener('click', startPomodoro);
+        let timeDisplay = document.getElementById('timeDisplay');
+        let sessionTime = document.getElementById('sessionTime');
+        let shortBreak = document.getElementById('shortBreak');
+        let longBreak = document.getElementById('longBreak');
+        let sessionDescription = document.getElementById('sessionDescription'); 
+
+        startButton.addEventListener('click', startTimer);
         endButton.addEventListener('click', endPomodoro);
 
-        function startPomodoro() {
-            startSection.style.display= "none";
-            event.preventDefault();
-            duringSection.style.display= "block";
+        let timer = {
+            sessionTime: 0,
+            shortBreak: 0,
+            longBreak: 0,
+            sessions: 0,
+            mode: 'Study time!',
         }
+
+        let interval;
+        let state = true; 
+
+        function startTimer() {
+            timer.sessionTime = sessionTime.value;
+            timer.shortBreak = shortBreak.value;
+            timer.longBreak = longBreak.value;
+
+            event.preventDefault();
+            startSection.style.display= "none";
+            duringSection.style.display= "block";
+
+           if (state) {
+            state = false; 
+            let totalSeconds;
+
+            totalSeconds = timer.sessionTime * 60;
+
+            let modeDetect = () => {
+                console.log("it reaches me");
+                console.log("Mode: " + timer.mode); 
+            if(timer.mode !== 'Study time!') {
+                totalSeconds = timer.shortBreak * 60; 
+                console.log("break time:" + totalSeconds);
+                interval = setInterval(updateSeconds, 1000);
+            } else {
+                totalSeconds = timer.sessionTime * 60;
+                interval = setInterval(updateSeconds, 1000);
+            } 
+            }
+
+            let updateSeconds = () => {
+                totalSeconds--;
+
+                let minutesLeft = Math.floor(totalSeconds/60);
+                let secondsLeft = totalSeconds % 60; 
+
+                if(secondsLeft < 10 && secondsLeft > 0) {
+                    secondsLeft = '0' + secondsLeft;
+                } 
+                timeDisplay.innerHTML=`${minutesLeft} : ${secondsLeft} `;
+
+               console.log(`${minutesLeft} : ${secondsLeft} `);
+
+                if(minutesLeft === 0 && secondsLeft === 0) {
+                    //sound play()
+                    clearInterval(interval);
+                    timer.sessions++;
+                    if(timer.sessions % 2) {
+                        timer.mode = 'It\'\s time for a short break!';
+                        sessionDescription.innerHTML = timer.mode; 
+                        modeDetect();                        
+                    } else {
+                        timer.mode = 'Study time!';
+                        sessionDescription.innerHTML = timer.mode; 
+                        modeDetect();
+                    }
+                   
+                }
+                }
+                interval = setInterval(updateSeconds, 1000);
+            } else {
+            console.log("session started");
+           }
+
+        }  
 
         function endPomodoro(){
             duringSection.style.display= "none";
             event.preventDefault();
             startSection.style.display= "block";
+            clearInterval(interval);
         }
 
         //
