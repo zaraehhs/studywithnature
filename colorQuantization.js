@@ -83,7 +83,7 @@
         console.log(findBiggestColorRange(rgbValues));
 
         const quantization = (rgbValues, depth) => {
-            const MAX_DEPTH = 5;
+            const MAX_DEPTH = 4; // we only want two final colors 
 
             if (depth === MAX_DEPTH || rgbValues.length === 0) {
                 const color = rgbValues.reduce((pixel1, pixel2) => 
@@ -115,7 +115,17 @@
                 ...quantization(rgbValues.slice(mid + 1), depth + 1),
             ];
         };
-        console.log('final colors:', quantization(rgbValues, 2));
+        console.log('final colors:', quantization(rgbValues, 0)); // 0 is the root or the starting point
+        let colors =  quantization(rgbValues, 0); 
+        let gradientContainer = document.getElementById('gradientContainer');
+
+        createGradient(colors); 
+
+        function createGradient(colors){
+            gradientContainer.style.backgroundImage = `linear-gradient(115deg, rgb(${colors[0].r},${colors[0].g},${colors[0].b}) 0%,rgb(${colors[4].r},${colors[4].g},${colors[4].b}) 45%,rgb(${colors[9].r},${colors[9].g},${colors[9].b}) 90% )`;
+
+        }
+
     }
 };
 grabImg();
