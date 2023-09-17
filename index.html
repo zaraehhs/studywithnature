@@ -199,8 +199,13 @@
 
             let modeDetect = () => {
                 console.log("it reaches me");
-                console.log("Mode: " + timer.mode); 
-            if(timer.mode !== 'Study time!') {
+                console.log("Mode: " + timer.mode);
+
+            if (timer.mode === 'Take a long break, great progress!') {
+                totalSeconds = timer.longBreak * 60; 
+                interval = setInterval(updateSeconds, 1000);
+
+            } else if (timer.mode === 'It\'\s time for a short break!') {
                 totalSeconds = timer.shortBreak * 60; 
                 console.log("break time:" + totalSeconds);
                 interval = setInterval(updateSeconds, 1000);
@@ -227,16 +232,24 @@
                     //sound play()
                     clearInterval(interval);
                     timer.sessions++;
-                    if(timer.sessions % 2) {
+
+                    if(timer.sessions % 2) {  // long break every 8th break
+                        if (timer.sessions % 8 === 0) {
+                            timer.mode = 'Take a long break, great progress!';
+                            sessionDescription.innerHTML = timer.mode; 
+                            modeDetect();  
+                        }
+
                         timer.mode = 'It\'\s time for a short break!';
                         sessionDescription.innerHTML = timer.mode; 
-                        modeDetect();                        
+                        modeDetect(); 
+
                     } else {
+
                         timer.mode = 'Study time!';
                         sessionDescription.innerHTML = timer.mode; 
                         modeDetect();
                     }
-                   
                 }
                 }
                 interval = setInterval(updateSeconds, 1000);
@@ -251,6 +264,10 @@
             event.preventDefault();
             startSection.style.display= "block";
             clearInterval(interval);
+        }
+
+        function pausePomodoro(){
+
         }
 
         //
