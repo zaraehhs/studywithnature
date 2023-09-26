@@ -98,6 +98,7 @@
                 newSoundId += 1;
             }
             updateSoundInfo(newSoundId);
+            changeBackgroundColors();
             document.querySelector('audio').play();
             document.querySelector('#playPause > i').innerHTML = 'pause';
         }
@@ -111,6 +112,7 @@
                 newSoundId += 1;
             }
             updateSoundInfo(newSoundId);
+            changeBackgroundColors();
             document.querySelector('audio').play();
             document.querySelector('#playPause > i').innerHTML = 'pause';
         }

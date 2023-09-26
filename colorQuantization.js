@@ -1,5 +1,5 @@
 
-    let grabImg = () => {
+    let changeBackgroundColors = () => {
         let imgFile = document.getElementById('soundImg');
 
         let canvas = document.createElement('canvas');
@@ -128,4 +128,4 @@
 
     }
 };
-grabImg();
+changeBackgroundColors();
