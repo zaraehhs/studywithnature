@@ -18,13 +18,13 @@
   margin-bottom: 20px;
 }
 
-.sound-title, .image-location {
+.sound-title, .image-description {
   color: white;
   margin: 3px;
   padding: 3px;
 }
 
-.image-location > span {
+.image-description > span {
   font-size: 0.75em;
 }
 

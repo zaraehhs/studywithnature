@@ -16,8 +16,16 @@
     <div class="overlay">
         <div class="main">
             <div class="title-soundcontainer">
-                <div>
+                <div id="mobile-sounds-menu" class="menu-overlay">
+                    <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeSoundsMenu()">&times;</a> -->
+                    <div class="menu-overlay-content">
+                        <ul id="mobile-sounds-list"></ul>
+                    </div>
+                </div>
+
+                <div class="navbar">
                     <h1 class="title">Study in Nature</h1>
+                    <button class="menu-button" onclick="openSoundsMenu()"><span class="material-icons-round">list</span></button>
                 </div>
 
                 <div class="sound-container">
@@ -103,11 +111,33 @@
                                 <img class="list-sound-image" src="${soundData[i].imgUrl}">
                                 <div>
                                     <p class="list-sound-title">${soundData[i].soundTitle}</p>
-                                    <p class="list-image-location">${soundData[i].imgLocation}</p>
+                                    <p class="list-image-description">${soundData[i].imgDescription}</p>
                                 </div>
                             </li>`;
                 soundsList.innerHTML += li;
             };
+        }
+
+        function openSoundsMenu() {
+            document.getElementById('mobile-sounds-menu').style.display = 'block';
+            document.getElementById("mobile-sounds-menu").style.width = "75%";
+            const soundsMenu = document.querySelector('#mobile-sounds-list');
+            if (soundsMenu && !soundsMenu.innerHTML) {
+                for (let i = 0; i < soundData.length; i++) {
+                    const li = `<li data-sound-id=${i} class="list-sound-item" onclick="playSelectedSound(${i})">
+                                    <img class="list-sound-image" src="${soundData[i].imgUrl}">
+                                    <div>
+                                        <p class="list-sound-title">${soundData[i].soundTitle}</p>
+                                        <p class="list-image-description">${soundData[i].imgDescription}</p>
+                                    </div>
+                                </li>`;
+                    soundsMenu.innerHTML += li;
+                };
+            }
+        }
+
+        function closeSoundsMenu() {
+            document.getElementById('mobile-sounds-menu').style.display = 'none';
         }
 
         function playPause(e) {
@@ -162,7 +192,12 @@
         }
 
         function playSelectedSound(id) {
+            const mobileSoundsMenu = document.getElementById('mobile-sounds-menu');
+            if (mobileSoundsMenu.style.display === 'block') {
+                mobileSoundsMenu.style.display = 'none';
+            }
             updateSoundInfo(id);
+            changeBackgroundColors();
             document.querySelector('audio').play();
             document.querySelector('#play-pause > span').innerHTML = 'pause';
         }
@@ -176,10 +211,12 @@
         const previousButton = document.querySelector('#previous');
         const nextButton = document.querySelector('#next');
         const volumeInput = document.querySelector('#volume-input');
+        // const menuOverlay = document.querySelector('#mobile-sounds-menu');
         playPauseButton.addEventListener('click', playPause);
         previousButton.addEventListener('click', playPrevious);
         nextButton.addEventListener('click', playNext);
         volumeInput.addEventListener('change', changeVolume);
+        // menuOverlay.addEventListener('click', closeSoundsMenu);
         loadSoundsList();
     </script>
     <script type="text/javascript" src="colorQuantization.js"></script>
