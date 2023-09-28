@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study with Nature </title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="sound-style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media-player.css">
+    <link rel="stylesheet" href="css/pomodoro.css">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -26,7 +27,6 @@
                 </div>
 
                 <div class="navbar">
-                    <h1 class="title">Study in Nature</h1>
                     <button class="menu-button" onclick="openSoundsMenu()"><span class="material-icons-round">list</span></button>
                 </div>
 
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
             <div class="list-pomodoro">
                 <div class="list-container">
                     <ul id="sounds-list"></ul>
@@ -93,287 +93,13 @@
                 </div>
 
             </div>
-        </div>
+        
     </div>
 
-
-    <script>
-        const soundData = [
-            {
-                imgUrl: 'images/birds.jpg',
-                imgDescription: 'Morning Serenade: Backyard Birds at Play',
-                soundUrl: 'https://audio.jukehost.co.uk/iHA1C4FAgkeCxt9DvGmBjgllP9ALocFf',
-                soundTitle: 'Birds Chirping',
-            },
-            {
-                imgUrl: 'images/calm-waves.jpg',
-                imgDescription: 'A Day by the Ocean',
-                soundUrl: 'https://audio.jukehost.co.uk/OgulFZmCpzhomsAsnaWAIJ02BtFnP3gI',
-                soundTitle: 'Calm Waves',
-            },
-            {
-                imgUrl: 'images/campfire.jpg',
-                imgDescription: 'Finding Solace by the Campfire',
-                soundUrl: 'https://audio.jukehost.co.uk/VQHB0H4Uz5SnJfnznuvGe7BWyLCBlQ07',
-                soundTitle: 'Campfire',
-            },
-            {
-                imgUrl: 'images/forest.jpg',
-                imgDescription: 'Symphony of the Woods',
-                soundUrl: 'https://audio.jukehost.co.uk/28zsHlunydp6wUgQahr8aTXcFyNa0dch',
-                soundTitle: 'Forest',
-            },
-            {
-                imgUrl: 'images/rain-and-thunder.jpg',
-                imgDescription: 'Embracing the Storm',
-                soundUrl: 'https://audio.jukehost.co.uk/OFAwwnonDnu0eNi6wbAFEF7C0ZHNTTxeh',
-                soundTitle: 'Rain & Thunder',
-            },
-            {
-                imgUrl: 'images/snowfall.jpg',
-                imgDescription: 'Snowed In',
-                soundUrl: 'https://audio.jukehost.co.uk/aRFcxDzq9wlEnYwx2GBVqquYob7ekWw7',
-                soundTitle: 'Snowfall',
-            },
-            {
-                imgUrl: 'images/soft-rain.jpg',
-                imgDescription: 'Cozy Downpour',
-                soundUrl: 'https://audio.jukehost.co.uk/xcb125pumHo2Lw4S9bEzfuSsWTToAmva',
-                soundTitle: 'Soft Rain',
-            },
-        ];
-
-        function loadSoundsList() {
-            const soundsList = document.querySelector('#sounds-list');
-            for (let i = 0; i < soundData.length; i++) {
-                const li = `<li data-sound-id=${i} class="list-sound-item" onclick="playSelectedSound(${i})">
-                                <img class="list-sound-image" src="${soundData[i].imgUrl}">
-                                <div>
-                                    <p class="list-sound-title">${soundData[i].soundTitle}</p>
-                                    <p class="list-image-description">${soundData[i].imgDescription}</p>
-                                </div>
-                            </li>`;
-                soundsList.innerHTML += li;
-            };
-        }
-
-        function openSoundsMenu() {
-            document.getElementById('mobile-sounds-menu').style.display = 'block';
-            document.getElementById("mobile-sounds-menu").style.width = "75%";
-            const soundsMenu = document.querySelector('#mobile-sounds-list');
-            if (soundsMenu && !soundsMenu.innerHTML) {
-                for (let i = 0; i < soundData.length; i++) {
-                    const li = `<li data-sound-id=${i} class="list-sound-item" onclick="playSelectedSound(${i})">
-                                    <img class="list-sound-image" src="${soundData[i].imgUrl}">
-                                    <div>
-                                        <p class="list-sound-title">${soundData[i].soundTitle}</p>
-                                        <p class="list-image-description">${soundData[i].imgDescription}</p>
-                                    </div>
-                                </li>`;
-                    soundsMenu.innerHTML += li;
-                };
-            }
-        }
-
-        function closeSoundsMenu() {
-            document.getElementById('mobile-sounds-menu').style.display = 'none';
-        }
-
-        function playPause(e) {
-            const state = document.querySelector('#play-pause > span').innerHTML;
-            const audio = document.querySelector('audio');
-            if (state === 'play_arrow') {
-                audio.play();
-                document.querySelector('#play-pause > span').innerHTML = 'pause';
-            } else if (state === 'pause') {
-                audio.pause();
-                document.querySelector('#play-pause > span').innerHTML = 'play_arrow';
-            }
-        }
-
-        function updateSoundInfo(newSoundId) {
-            document.querySelector('.sound-image').src = soundData[newSoundId].imgUrl;
-            document.querySelector('.sound-image').alt = soundData[newSoundId].imgDescription;
-            document.querySelector('.sound-title').innerHTML = soundData[newSoundId].soundTitle;
-            document.querySelector('.image-description').innerHTML = soundData[newSoundId].imgDescription;
-            document.querySelector('audio').src = soundData[newSoundId].soundUrl;
-            document.querySelector('audio').dataset.soundId = newSoundId;
-        }
-
-        function playPrevious(e) {
-            const soundId = Number(document.querySelector('audio').dataset.soundId);
-            let newSoundId = soundId;
-            if (soundId === 0) {
-                newSoundId = soundData.length - 1;
-            } else if (soundId === soundData.length - 1) {
-                newSoundId = 0;
-            } else {
-                newSoundId += 1;
-            }
-            updateSoundInfo(newSoundId);
-            changeBackgroundColors();
-            document.querySelector('audio').play();
-            document.querySelector('#playPause > i').innerHTML = 'pause';
-        }
-
-        function playNext(e) {
-            const soundId = Number(document.querySelector('audio').dataset.soundId);
-            let newSoundId = soundId;
-            if (soundId === soundData.length - 1) {
-                newSoundId = 0;
-            } else {
-                newSoundId += 1;
-            }
-            updateSoundInfo(newSoundId);
-            changeBackgroundColors();
-            document.querySelector('audio').play();
-            document.querySelector('#play-pause > span').innerHTML = 'pause';
-        }
-
-        function playSelectedSound(id) {
-            const mobileSoundsMenu = document.getElementById('mobile-sounds-menu');
-            if (mobileSoundsMenu.style.display === 'block') {
-                mobileSoundsMenu.style.display = 'none';
-            }
-            updateSoundInfo(id);
-            changeBackgroundColors();
-            document.querySelector('audio').play();
-            document.querySelector('#play-pause > span').innerHTML = 'pause';
-        }
-
-        function changeVolume(e) {
-            const audio = document.querySelector('audio');
-            audio.volume = this.value;
-        }
-
-        // Pomodoro Code below
-
-        let startButton = document.getElementById('submit');
-        let endButton = document.getElementById('endPomodoro');
-        let startSection = document.getElementById('pomodoro-start');
-        let duringSection = document.getElementById('pomodoro-during');
-        let timeDisplay = document.getElementById('timeDisplay');
-        let sessionTime = document.getElementById('sessionTime');
-        let shortBreak = document.getElementById('shortBreak');
-        let longBreak = document.getElementById('longBreak');
-        let sessionDescription = document.getElementById('sessionDescription'); 
-
-        startButton.addEventListener('click', startTimer);
-        endButton.addEventListener('click', endPomodoro);
-
-        let timer = {
-            sessionTime: 0,
-            shortBreak: 0,
-            longBreak: 0,
-            sessions: 1,
-            mode: 'Study time!',
-        }
-
-        let interval;
-        let state = true; 
-
-        function startTimer() {
-            timer.sessionTime = sessionTime.value;
-            timer.shortBreak = shortBreak.value;
-            timer.longBreak = longBreak.value;
-
-            event.preventDefault();
-            startSection.style.display= "none";
-            duringSection.style.display= "block";
-
-           if (state) {
-            state = false; 
-            let totalSeconds;
-
-            totalSeconds = timer.sessionTime * 60;
-
-            let modeDetect = () => {
-                console.log("it reaches me");
-                console.log("Mode: " + timer.mode);
-
-            if (timer.mode === 'Take a long break, great progress!') {
-                totalSeconds = timer.longBreak * 60; 
-                interval = setInterval(updateSeconds, 1000);
-
-            } else if (timer.mode === 'It\'\s time for a short break!') {
-                totalSeconds = timer.shortBreak * 60; 
-                console.log("break time:" + totalSeconds);
-                interval = setInterval(updateSeconds, 1000);
-            } else {
-                totalSeconds = timer.sessionTime * 60;
-                interval = setInterval(updateSeconds, 1000);
-            } 
-            }
-
-            let updateSeconds = () => {
-                totalSeconds--;
-
-                let minutesLeft = Math.floor(totalSeconds/60);
-                let secondsLeft = totalSeconds % 60; 
-
-                if(secondsLeft < 10 && secondsLeft > 0) {
-                    secondsLeft = '0' + secondsLeft;
-                } 
-                timeDisplay.innerHTML=`${minutesLeft} : ${secondsLeft} `;
-
-               console.log(`${minutesLeft} : ${secondsLeft} `);
-
-                if(minutesLeft === 0 && secondsLeft === 0) {
-                    //sound play()
-                    clearInterval(interval);
-                    timer.sessions++;
-                    console.log("This is session # "+ timer.sessions);
-
-                    if(timer.sessions % 2 === 0 && !(timer.sessions % 8 === 0) ) {  // long break every 8th break
-                        timer.mode = 'It\'\s time for a short break!';
-                        sessionDescription.innerHTML = timer.mode; 
-                        modeDetect(); 
-
-                    } else if (timer.sessions % 8 === 0) {
-                            timer.mode = 'Take a long break, great progress!';
-                            sessionDescription.innerHTML = timer.mode; 
-                            modeDetect();  
-                    } else {
-
-                        timer.mode = 'Study time!';
-                        sessionDescription.innerHTML = timer.mode; 
-                        modeDetect();
-                    }
-                }
-                }
-                interval = setInterval(updateSeconds, 1000);
-            } else {
-            console.log("session started");
-           }
-
-        }  
-
-        function endPomodoro(){
-            duringSection.style.display= "none";
-            event.preventDefault();
-            startSection.style.display= "block";
-            clearInterval(interval);
-        }
-
-        function pausePomodoro(){
-
-        }
-
-        //
-
-        const playPauseButton = document.querySelector('#play-pause');
-        const previousButton = document.querySelector('#previous');
-        const nextButton = document.querySelector('#next');
-        const volumeInput = document.querySelector('#volume-input');
-        // const menuOverlay = document.querySelector('#mobile-sounds-menu');
-        playPauseButton.addEventListener('click', playPause);
-        previousButton.addEventListener('click', playPrevious);
-        nextButton.addEventListener('click', playNext);
-        volumeInput.addEventListener('change', changeVolume);
-        // menuOverlay.addEventListener('click', closeSoundsMenu);
-        loadSoundsList();
-    </script>
-    <script type="text/javascript" src="colorQuantization.js"></script>
+    <script type="text/javascript" src="js/colorQuantization.js"></script>
+    <script type="text/javascript" src="js/mediaPlayer.js"></script>
+    <script type="text/javascript" src="js/pomodoro.js"></script>
+    
 </body>
 
 </html>
