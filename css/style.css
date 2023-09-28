@@ -1,4 +1,4 @@
-body{
+body {
     position: relative;
     padding: 5%;
     height: 100vh;
@@ -8,14 +8,16 @@ body{
     color: white;
     font-size: 3em;
 }
-.main{ 
+
+.main {
     display: flex;
     max-width: 900px;
-    gap:50px;
+    gap: 50px;
     width: 100%;
     margin: auto;
-    
+
 }
+
 .gradient-background {
     background-repeat: no-repeat;
     background-size: cover;
@@ -25,77 +27,26 @@ body{
 
 .material-icons-round {
     color: white;
-  }
+}
 
-.list-pomodoro{
+.list-pomodoro {
     width: 50%;
 }
 
-.list-container{
-    width:100%;
-    height:200px;
+.list-container {
+    width: 100%;
+    height: 200px;
     border-radius: 8px;
     background-color: aliceblue;
-
-
 }
 
-.pomodoro-container{
-    background: rgba(239, 242, 246, 0.71);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    padding: 10px;
-
-}
-.pomodoro-container h1{
-    font-size: 16px;
-    margin-bottom: 2px;
-}
-.pomodoro-container p{
-    margin-top:0px;
-}
-.pomodoro-container p, label {
-    font-size: 12px;
+.title-soundcontainer {
+    width: 50%;
 }
 
-#timeDisplay{
-    font-size: 24px;
-}
-
-form input {
-    border-radius: 16px;
-    padding:8px;
-    border: none;
-}
-#submit {
-    background-color: black;
-    padding:8px;
-    border-radius: 16px;
-    color:white;
-    border:none;
-    font-size: 12px;
-    text-align: center;
-    margin: auto;
-    width:100%;
-}
-form div{
-    display: flex;
-    flex-direction: column;
-
-}
-
-form {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-
-}
-#pomodoro-during {
-    display:none; 
-}
 
 .body-spacing {
-    margin-bottom:12px;
+    margin-bottom: 12px;
 }
 
 .menu-button {
@@ -106,8 +57,8 @@ form {
     display: none;
 }
 
-@media (max-width:580px){
-    .main{
+@media (max-width:580px) {
+    .main {
         position: relative;
         flex-wrap: wrap;
 
@@ -142,11 +93,20 @@ form {
         margin-top: 10px;
     }
 
-    .menu-overlay-content > ul {
+    .menu-overlay-content>ul {
         padding-left: 0;
     }
 
     .list-container {
         display: none;
     }
+
+    .list-pomodoro {
+        width: 100%;
+    }
+
+    .title-soundcontainer {
+        width: 100%;
+    }
+
 }
