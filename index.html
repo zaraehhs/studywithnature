@@ -13,18 +13,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body class="gradient-background" id="gradientContainer">
+<body>
+    <main class="gradient-background" id="gradientContainer"> 
     <div class="overlay">
         <div class="main">
             <div class="title-soundcontainer">
                 <div>
                     <h1 class="title">Study with Nature</h1>
-                <div id="mobile-sounds-menu" class="menu-overlay">
-                    <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeSoundsMenu()">&times;</a> -->
-                    <div class="menu-overlay-content">
-                        <ul id="mobile-sounds-list"></ul>
-                    </div>
-                </div>
+               
 
                 <div class="navbar">
                     <button class="menu-button" onclick="openSoundsMenu()"><span class="material-icons-round">list</span></button>
@@ -99,7 +95,13 @@
     <script type="text/javascript" src="js/colorQuantization.js"></script>
     <script type="text/javascript" src="js/mediaPlayer.js"></script>
     <script type="text/javascript" src="js/pomodoro.js"></script>
-    
+</main>
+<div id="mobile-sounds-menu" class="menu-overlay">
+ <a href="javascript:void(0)" class="closebtn" onclick="closeSoundsMenu()">&times;</a>
+    <div class="menu-overlay-content">
+        <ul id="mobile-sounds-list"></ul>
+    </div>
+</div>
 </body>
 
 </html>
