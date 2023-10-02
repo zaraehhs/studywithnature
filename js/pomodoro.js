@@ -7,9 +7,11 @@ let sessionTime = document.getElementById('sessionTime');
 let shortBreak = document.getElementById('shortBreak');
 let longBreak = document.getElementById('longBreak');
 let sessionDescription = document.getElementById('sessionDescription');
+let pauseButton = document.getElementById('pausePomodoro');
 
 startButton.addEventListener('click', startTimer);
 endButton.addEventListener('click', endPomodoro);
+pauseButton.addEventListener('click', pausePomodoro);
 
 let timer = {
     sessionTime: 0,
@@ -106,6 +108,12 @@ function endPomodoro() {
 }
 
 function pausePomodoro() {
+    let pausedTime = timeDisplay.innerHTML;
+    console.log(pausedTime);
+    //clearInterval(); 
+
+
+
 
 }
 
