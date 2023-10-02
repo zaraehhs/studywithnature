@@ -1,0 +1,36 @@
+.text-white {
+    color: white;
+}
+.text-black {
+    color: black;
+}
+
+/* Text */
+
+.text-title {
+    font-size: 3em; 
+    font-style: bold;
+}
+
+.text-body__title {
+    font-size: 2em;
+    font-style: bold;
+}
+
+.text-body {
+    font-size: 1.5em;
+}
+
+.text-small {
+    font-size: 10px;
+}
+
+/* Margins */
+
+
+
+/* Padding */
+
+.padding-small {
+    padding: 10px; 
+}
