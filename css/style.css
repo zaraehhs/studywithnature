@@ -4,11 +4,6 @@ body {
     height: 100vh;
 }
 
-.title {
-    color: white;
-    font-size: 3em;
-}
-
 .main {
     display: flex;
     max-width: 900px;
