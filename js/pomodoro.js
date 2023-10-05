@@ -17,6 +17,7 @@ let timer = {
     sessionTime: 0,
     shortBreak: 0,
     longBreak: 0,
+    pausedTime: 0,
     sessions: 1,
     mode: 'Study time!',
 }
@@ -33,11 +34,18 @@ function startTimer() {
     startSection.style.display = "none";
     duringSection.style.display = "block";
 
+    console.log(state);
     if (state) {
         state = false;
         let totalSeconds;
 
         totalSeconds = timer.sessionTime * 60;
+        if (timer.pausedTime != 0){
+            totalSeconds = timer.pausedTime * 60; 
+            console.log("hey your close: " + totalSeconds);
+
+            timer.pausedTime = 0;
+        }
 
         let modeDetect = () => {
             console.log("it reaches me");
@@ -51,6 +59,7 @@ function startTimer() {
                 totalSeconds = timer.shortBreak * 60;
                 console.log("break time:" + totalSeconds);
                 interval = setInterval(updateSeconds, 1000);
+
             } else {
                 totalSeconds = timer.sessionTime * 60;
                 interval = setInterval(updateSeconds, 1000);
@@ -105,16 +114,32 @@ function endPomodoro() {
     event.preventDefault();
     startSection.style.display = "block";
     clearInterval(interval);
+    timer.sessions = 1; 
 }
 
 function pausePomodoro() {
     let pausedTime = timeDisplay.innerHTML;
-    console.log(pausedTime);
-    //clearInterval(); 
+    let pausedTimeArray = pausedTime.split(' : ');
+    console.log("array"  + pausedTimeArray);
 
+    let remainingMins = pausedTimeArray[0];
+    console.log("Mins"  + remainingMins);
+    let remainingSeconds = Math.floor((pausedTimeArray[1] * 100 / 60)); //conversion to decimal 
+    console.log("Seconds"  + remainingSeconds);
 
+    let newSessionTime = remainingMins + "." + remainingSeconds; 
 
+    console.log(newSessionTime);
+    if (pauseButton.innerText === "Pause"){
+        console.log("paused time: " + pausedTime);
+        clearInterval(interval);
+        pauseButton.innerText = "Resume";
+        timer.pausedTime = parseFloat(newSessionTime);
+    } else {
+        console.log("im in the else statement: " + timer.pausedTime); 
+        pauseButton.innerText === "Pause";
+        state = true;
+        startTimer();
+    }
 
 }
-
-        //
