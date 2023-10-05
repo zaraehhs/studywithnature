@@ -41,7 +41,7 @@ function startTimer() {
 
         totalSeconds = timer.sessionTime * 60;
         if (timer.pausedTime != 0){
-            totalSeconds = timer.pausedTime * 60; 
+            totalSeconds = Math.floor(timer.pausedTime * 60); 
             console.log("hey your close: " + totalSeconds);
 
             timer.pausedTime = 0;
@@ -137,7 +137,7 @@ function pausePomodoro() {
         timer.pausedTime = parseFloat(newSessionTime);
     } else {
         console.log("im in the else statement: " + timer.pausedTime); 
-        pauseButton.innerText === "Pause";
+        pauseButton.innerText = "Pause";
         state = true;
         startTimer();
     }
