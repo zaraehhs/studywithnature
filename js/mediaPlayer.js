@@ -60,6 +60,7 @@ function loadSoundsList() {
 function openSoundsMenu() {
     document.getElementById('mobile-sounds-menu').style.display = 'block';
     document.getElementById("mobile-sounds-menu").style.width = "75%";
+    document.getElementsByTagName('main')[0].classList.add('blur');
     const soundsMenu = document.querySelector('#mobile-sounds-list');
     if (soundsMenu && !soundsMenu.innerHTML) {
         for (let i = 0; i < soundData.length; i++) {
@@ -77,6 +78,7 @@ function openSoundsMenu() {
 
 function closeSoundsMenu() {
     document.getElementById('mobile-sounds-menu').style.display = 'none';
+    document.getElementsByTagName('main')[0].classList.remove('blur');
 }
 
 function playPause(e) {
