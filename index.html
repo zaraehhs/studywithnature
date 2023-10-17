@@ -17,19 +17,21 @@
 <body>
     <main class="gradient-background" id="gradientContainer"> 
     <div class="overlay">
+        <div class="title-navbar"> 
+            <h1 class="color-white text-title">Study with Nature</h1>
+            <div class="navbar">
+                <button class="menu-button" onclick="openSoundsMenu()"><span id="menu-icon" class="material-icons-round">list</span></button>
+            </div>
+        </div>
         <div class="main">
             <div class="title-soundcontainer">
                 <div>
-                    <h1 class="color-white text-title">Study with Nature</h1>
-
-                <div class="navbar">
-                    <button class="menu-button" onclick="openSoundsMenu()"><span id="menu-icon" class="material-icons-round">list</span></button>
-                </div>
+                
 
                 <div class="sound-container">
                     <img id="soundImg" class="sound-image" src="images/birds.jpg" alt="Morning Serenade: Backyard Birds at Play">
-                    <p class="sound-title"> Birds Chirping </p>
-                    <p class="image-description"> Morning Serenade: Backyard Birds at Play </p>
+                    <p class="sound-title text-body"> Birds Chirping </p>
+                    <p class="image-description text-body"> Morning Serenade: Backyard Birds at Play </p>
                     <audio loop data-sound-id="0" src="https://audio.jukehost.co.uk/iHA1C4FAgkeCxt9DvGmBjgllP9ALocFf"></audio>
 
                     <div class="sound-buttons">
@@ -47,7 +49,7 @@
             </div>
         </div>
             <div class="list-pomodoro">
-                <div class="list-container">
+                <div class="list-container color-white__opaque">
                     <ul id="sounds-list"></ul>
                 </div>
 

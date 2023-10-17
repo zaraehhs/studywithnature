@@ -14,7 +14,7 @@
 /* Text */
 .text-title {
     font-size: 3rem;
-    font-style: bold;
+    font-weight: bold;
 }
 
 .text-body {
@@ -70,4 +70,10 @@
     border: none;
     text-align: center;
     margin: auto;
+}
+
+@media (max-width: 800px) {
+    .text-title {
+        font-size: 2rem;
+    }
 }

@@ -3,7 +3,7 @@
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     padding: 10px;
-
+    margin-top: 35px;
 }
 .pomodoro-container h1{
     font-size: 16px;
@@ -40,4 +40,10 @@ form {
 }
 #pomodoro-during {
     display:none; 
+}
+
+@media(max-width:800px){
+    .pomodoro-container{
+        margin-top: 0px;
+    }
 }
