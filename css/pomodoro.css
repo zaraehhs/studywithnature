@@ -25,17 +25,7 @@ form input {
     padding:8px;
     border: none;
 }
-#submit {
-    background-color: black;
-    padding:8px;
-    border-radius: 16px;
-    color:white;
-    border:none;
-    font-size: 12px;
-    text-align: center;
-    margin: auto;
-    width:100%;
-}
+
 form div{
     display: flex;
     flex-direction: column;
