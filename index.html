@@ -7,33 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study with Nature </title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="css/media-player.css">
     <link rel="stylesheet" href="css/pomodoro.css">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body class="gradient-background" id="gradientContainer">
+<body>
+    <main class="gradient-background" id="gradientContainer"> 
     <div class="overlay">
+        <div class="title-navbar"> 
+            <h1 class="color-white text-title">Study with Nature</h1>
+            <div class="navbar">
+                <button class="menu-button" onclick="openSoundsMenu()"><span id="menu-icon" class="material-icons-round">list</span></button>
+            </div>
+        </div>
         <div class="main">
             <div class="title-soundcontainer">
                 <div>
-                    <h1 class="title">Study with Nature</h1>
-                <div id="mobile-sounds-menu" class="menu-overlay">
-                    <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeSoundsMenu()">&times;</a> -->
-                    <div class="menu-overlay-content">
-                        <ul id="mobile-sounds-list"></ul>
-                    </div>
-                </div>
-
-                <div class="navbar">
-                    <button class="menu-button" onclick="openSoundsMenu()"><span class="material-icons-round">list</span></button>
-                </div>
+                
 
                 <div class="sound-container">
                     <img id="soundImg" class="sound-image" src="images/birds.jpg" alt="Morning Serenade: Backyard Birds at Play">
-                    <p class="sound-title"> Birds Chirping </p>
-                    <p class="image-description"> Morning Serenade: Backyard Birds at Play </p>
+                    <p class="sound-title text-body"> Birds Chirping </p>
+                    <p class="image-description text-body"> Morning Serenade: Backyard Birds at Play </p>
                     <audio loop data-sound-id="0" src="https://audio.jukehost.co.uk/iHA1C4FAgkeCxt9DvGmBjgllP9ALocFf"></audio>
 
                     <div class="sound-buttons">
@@ -51,7 +49,7 @@
             </div>
         </div>
             <div class="list-pomodoro">
-                <div class="list-container">
+                <div class="list-container color-white__opaque">
                     <ul id="sounds-list"></ul>
                 </div>
 
@@ -78,7 +76,7 @@
         
                     
                     </form>
-                    <input id="submit" type="submit" value="Start" >
+                    <input class="button-black padding-small text-body width-full" id="submit" type="submit" value="Start" >
                     </div>
 
                     <div id="pomodoro-during"> 
@@ -95,11 +93,16 @@
             </div>
         
     </div>
-
-    <script type="text/javascript" src="js/colorQuantization.js"></script>
-    <script type="text/javascript" src="js/mediaPlayer.js"></script>
-    <script type="text/javascript" src="js/pomodoro.js"></script>
-    
+</main>
+<div id="mobile-sounds-menu" class="menu-overlay">
+ <a href="javascript:void(0)" class="closebtn" onclick="closeSoundsMenu()">&times;</a>
+    <div class="menu-overlay-content">
+        <ul id="mobile-sounds-list"></ul>
+    </div>
+</div>
+<script type="text/javascript" src="js/colorQuantization.js"></script>
+<script type="text/javascript" src="js/mediaPlayer.js"></script>
+<script type="text/javascript" src="js/pomodoro.js"></script>
 </body>
 
 </html>
