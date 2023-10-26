@@ -111,35 +111,36 @@ function startTimer() {
 
 function endPomodoro() {
     duringSection.style.display = "none";
-    event.preventDefault();
     startSection.style.display = "block";
     clearInterval(interval);
     timer.sessions = 1; 
+    location.reload(); // 
 }
 
 function pausePomodoro() {
     let pausedTime = timeDisplay.innerHTML;
     let pausedTimeArray = pausedTime.split(' : ');
-    console.log("array"  + pausedTimeArray);
-
     let remainingMins = pausedTimeArray[0];
-    console.log("Mins"  + remainingMins);
     let remainingSeconds = Math.floor((pausedTimeArray[1] * 100 / 60)); //conversion to decimal 
-    console.log("Seconds"  + remainingSeconds);
 
     let newSessionTime = remainingMins + "." + remainingSeconds; 
 
-    console.log(newSessionTime);
     if (pauseButton.innerText === "Pause"){
-        console.log("paused time: " + pausedTime);
         clearInterval(interval);
         pauseButton.innerText = "Resume";
         timer.pausedTime = parseFloat(newSessionTime);
     } else {
-        console.log("im in the else statement: " + timer.pausedTime); 
         pauseButton.innerText = "Pause";
         state = true;
         startTimer();
     }
 
 }
+
+function enableStartBtn() {
+    console.log("runs");
+    if (sessionTime.value && shortBreak.value && longBreak.value){
+        startButton.disabled = true; 
+    }
+}
+enableStartBtn(); 
