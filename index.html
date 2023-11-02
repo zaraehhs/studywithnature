@@ -29,9 +29,9 @@
                 
 
                 <div class="sound-container">
-                    <img id="soundImg" class="sound-image" src="images/birds.jpg" alt="Morning Serenade: Backyard Birds at Play">
-                    <p class="sound-title text-body"> Birds Chirping </p>
-                    <p class="image-description text-body"> Morning Serenade: Backyard Birds at Play </p>
+                    <img id="soundImg" class="sound-image box-shadow" src="images/birds.jpg" alt="Morning Serenade: Backyard Birds at Play">
+                    <p class="sound-title text-body__title"> Birds Chirping </p>
+                    <p class="image-description text-italics text-body text-opacity"> Morning Serenade: Backyard Birds at Play </p>
                     <audio loop data-sound-id="0" src="https://audio.jukehost.co.uk/iHA1C4FAgkeCxt9DvGmBjgllP9ALocFf"></audio>
 
                     <div class="sound-buttons">
@@ -49,44 +49,44 @@
             </div>
         </div>
             <div class="list-pomodoro">
-                <div class="list-container color-white__opaque">
+                <div class="list-container color-white__opaque box-shadow">
                     <ul id="sounds-list"></ul>
                 </div>
 
-                <div class="pomodoro-container">
+                <div class="pomodoro-container box-shadow padding-container ">
                     <div id="pomodoro-start"> 
-                    <h1> Pomodoro </h1>
-                    <p class="body-spacing"> Set times to plan your study session </p>
+                    <h1 class="text-body__title"> Pomodoro </h1>
+                    <p class="body-spacing text-body"> Set times to plan your study session </p>
 
                     <form class="body-spacing"> 
                         <div>
-                            <label for="sessionTime"> Session time: </label>
+                            <label for="sessionTime" class="text-subtitle margin-xs"> Session Time: </label>
                             <input type="number" id="sessionTime" min="1" max="200">
                         </div>
 
                         <div>
-                            <label for="sessionTime"> Short Break: </label>
+                            <label for="sessionTime" class="text-subtitle margin-xs"> Short Break: </label>
                             <input type="number" id="shortBreak" min="1" max="200">
                         </div>
                         
                         <div>
-                            <label for="sessionTime"> Long Break: </label>
+                            <label for="sessionTime" class="text-subtitle margin-xs"> Long Break: </label>
                             <input type="number" id="longBreak" min="1" max="200">
                         </div>    
         
                     
                     </form>
-                    <input class="button-black padding-small text-body width-full" id="submit" type="submit" value="Start">
+                    <input class="button-black padding-small text-subtitle width-full" id="submit" type="submit" value="Start">
                     </div>
 
                     <div id="pomodoro-during"> 
-                        <h1> Pomodoro </h1>
+                        <h1 class="text-body__title"> Pomodoro </h1>
                         <p id="sessionDescription"> Study Session Time </p>
 
                         <h2 id="timeDisplay"></h2>
 
-                        <button class="button-black padding-small text-body" id="pausePomodoro"> Pause </button>
-                        <button class="button-black padding-small text-body" id="endPomodoro"> End Session </button>
+                        <button class="button-black padding-small text-subtitle" id="pausePomodoro"> Pause </button>
+                        <button class="button-black padding-small text-subtitle" id="endPomodoro"> End Session </button>
                     </div>
                 </div>
 
