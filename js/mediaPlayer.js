@@ -48,17 +48,17 @@ function loadSoundsList() {
     const soundsList = document.querySelector('#sounds-list');
     for (let i = 0; i < soundData.length; i++) {
         const li = `<li data-sound-id=${i} class="list-sound-item" onclick="playSelectedSound(${i})">
-                        <img class="list-sound-image" src="${soundData[i].imgUrl}">
+                        <img class="list-sound-image box-shadow" src="${soundData[i].imgUrl}">
                         <div>
                             <p class="list-sound-title">${soundData[i].soundTitle}</p>
-                            <p class="list-image-description">${soundData[i].imgDescription}</p>
+                            <p class="list-image-description text-italics margin-none text-opacity">${soundData[i].imgDescription}</p>
                         </div>
                     </li>`;
         soundsList.innerHTML += li;
     };
 }
 
-function openSoundsMenu() {
+function openSoundsMenu() { //mobile 
     const mobileSoundsMenu = document.getElementById('mobile-sounds-menu');
     mobileSoundsMenu.style.display = 'block';
     mobileSoundsMenu.style.width = "75%";
@@ -69,10 +69,10 @@ function openSoundsMenu() {
         for (let i = 0; i < soundData.length; i++) {
             // TODO: create separate function that populates sounds list; also used in loadSoundsList()
             const li = `<li data-sound-id=${i} class="list-sound-item" onclick="playSelectedSound(${i})">
-                            <img class="list-sound-image" src="${soundData[i].imgUrl}">
+                            <img class="list-sound-image box-shadow" src="${soundData[i].imgUrl}">
                             <div>
                                 <p class="list-sound-title">${soundData[i].soundTitle}</p>
-                                <p class="list-image-description">${soundData[i].imgDescription}</p>
+                                <p class="list-image-description text-italics margin-none text-opacity">${soundData[i].imgDescription}</p>
                             </div>
                         </li>`;
             soundsList.innerHTML += li;
