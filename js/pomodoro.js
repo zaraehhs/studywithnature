@@ -7,14 +7,17 @@ let sessionTime = document.getElementById('sessionTime');
 let shortBreak = document.getElementById('shortBreak');
 let longBreak = document.getElementById('longBreak');
 let sessionDescription = document.getElementById('sessionDescription');
+let pauseButton = document.getElementById('pausePomodoro');
 
 startButton.addEventListener('click', startTimer);
 endButton.addEventListener('click', endPomodoro);
+pauseButton.addEventListener('click', pausePomodoro);
 
 let timer = {
     sessionTime: 0,
     shortBreak: 0,
     longBreak: 0,
+    pausedTime: 0,
     sessions: 1,
     mode: 'Study time!',
 }
@@ -31,11 +34,18 @@ function startTimer() {
     startSection.style.display = "none";
     duringSection.style.display = "block";
 
+    console.log(state);
     if (state) {
         state = false;
         let totalSeconds;
 
         totalSeconds = timer.sessionTime * 60;
+        if (timer.pausedTime != 0){
+            totalSeconds = Math.floor(timer.pausedTime * 60); 
+            console.log("hey your close: " + totalSeconds);
+
+            timer.pausedTime = 0;
+        }
 
         let modeDetect = () => {
             console.log("it reaches me");
@@ -49,6 +59,7 @@ function startTimer() {
                 totalSeconds = timer.shortBreak * 60;
                 console.log("break time:" + totalSeconds);
                 interval = setInterval(updateSeconds, 1000);
+
             } else {
                 totalSeconds = timer.sessionTime * 60;
                 interval = setInterval(updateSeconds, 1000);
@@ -100,13 +111,36 @@ function startTimer() {
 
 function endPomodoro() {
     duringSection.style.display = "none";
-    event.preventDefault();
     startSection.style.display = "block";
     clearInterval(interval);
+    timer.sessions = 1; 
+    location.reload(); // 
 }
 
 function pausePomodoro() {
+    let pausedTime = timeDisplay.innerHTML;
+    let pausedTimeArray = pausedTime.split(' : ');
+    let remainingMins = pausedTimeArray[0];
+    let remainingSeconds = Math.floor((pausedTimeArray[1] * 100 / 60)); //conversion to decimal 
+
+    let newSessionTime = remainingMins + "." + remainingSeconds; 
+
+    if (pauseButton.innerText === "Pause"){
+        clearInterval(interval);
+        pauseButton.innerText = "Resume";
+        timer.pausedTime = parseFloat(newSessionTime);
+    } else {
+        pauseButton.innerText = "Pause";
+        state = true;
+        startTimer();
+    }
 
 }
 
-        //
+function enableStartBtn() {
+    console.log("runs");
+    if (sessionTime.value && shortBreak.value && longBreak.value){
+        startButton.disabled = true; 
+    }
+}
+enableStartBtn(); 

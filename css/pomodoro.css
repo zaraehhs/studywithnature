@@ -42,6 +42,19 @@ form {
     display:none; 
 }
 
+*:disabled:hover {
+    cursor: not-allowed;
+}
+
+input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 @media(max-width:800px){
     .pomodoro-container{
         margin-top: 0px;
