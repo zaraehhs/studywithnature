@@ -15,94 +15,98 @@
 </head>
 
 <body>
-    <main class="gradient-background" id="gradientContainer"> 
-    <div class="overlay">
-        <div class="title-navbar"> 
-            <h1 class="color-white text-title">Study with Nature</h1>
-            <div class="navbar">
-                <button class="menu-button" onclick="openSoundsMenu()"><span id="menu-icon" class="material-icons-round">list</span></button>
-            </div>
-        </div>
-        <div class="main">
-            <div class="title-soundcontainer">
-                <div>
-                
-
-                <div class="sound-container">
-                    <img id="soundImg" class="sound-image box-shadow" src="images/birds.jpg" alt="Morning Serenade: Backyard Birds at Play">
-                    <p class="sound-title text-body__title"> Birds Chirping </p>
-                    <p class="image-description text-italics text-body text-opacity"> Morning Serenade: Backyard Birds at Play </p>
-                    <audio loop data-sound-id="0" src="https://audio.jukehost.co.uk/iHA1C4FAgkeCxt9DvGmBjgllP9ALocFf"></audio>
-
-                    <div class="sound-buttons">
-                        <button id="previous"><span class="material-icons-round">fast_rewind</span></button>
-                        <button id="play-pause"><span class="material-icons-round">play_arrow</span></button>
-                        <button id="next"><span class="material-icons-round">fast_forward</span></button>
-                    </div>
-
-                    <div class="volume">
-                        <span class="material-icons-round">volume_down</span>
-                        <input type="range" id="volume-input" min="0" max="1" step="0.01">
-                        <span class="material-icons-round">volume_up</span>
-                    </div>
+    <main class="gradient-background" id="gradientContainer">
+        <div class="overlay">
+            <div class="title-navbar">
+                <h1 class="color-white text-title">Study with Nature</h1>
+                <div class="navbar">
+                    <button class="menu-button" onclick="openMobileSoundsMenu()"><span id="menu-icon"
+                            class="material-icons-round">list</span></button>
                 </div>
             </div>
-        </div>
-            <div class="list-pomodoro">
-                <div class="list-container color-white__opaque box-shadow">
-                    <ul id="sounds-list"></ul>
+            <div class="main">
+                <div class="title-soundcontainer">
+                    <div>
+                        <div class="sound-container">
+                            <img id="soundImg" class="sound-image box-shadow" src="images/birds.jpg"
+                                alt="Morning Serenade: Backyard Birds at Play">
+                            <p class="sound-title text-body__title margin-none padding-none color-white"> Birds Chirping </p>
+                            <p class="image-description margin-none padding-none color-white text-italics text-body text-opacity"> Morning Serenade: Backyard
+                                Birds at Play </p>
+                            <audio loop data-sound-id="0"
+                                src="https://audio.jukehost.co.uk/iHA1C4FAgkeCxt9DvGmBjgllP9ALocFf"></audio>
+
+                            <div class="sound-buttons">
+                                <button id="previous"><span class="material-icons-round">fast_rewind</span></button>
+                                <button id="play-pause"><span class="material-icons-round">play_arrow</span></button>
+                                <button id="next"><span class="material-icons-round">fast_forward</span></button>
+                            </div>
+
+                            <div class="volume">
+                                <span class="material-icons-round">volume_down</span>
+                                <input type="range" id="volume-input" min="0" max="1" step="0.01">
+                                <span class="material-icons-round">volume_up</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="list-pomodoro">
+                    <div class="list-container color-white__opaque box-shadow">
+                        <ul id="desktop-sounds-list"></ul>
+                    </div>
 
-                <div class="pomodoro-container box-shadow padding-container ">
-                    <div id="pomodoro-start"> 
-                    <h1 class="text-body__title"> Pomodoro </h1>
-                    <p class="body-spacing text-body"> Set times to plan your study session </p>
+                    <div class="pomodoro-container box-shadow padding-container ">
+                        <div id="pomodoro-start">
+                            <h1 class="text-body__title"> Pomodoro </h1>
+                            <p class="body-spacing text-body"> Set times to plan your study session </p>
 
-                    <form class="body-spacing"> 
-                        <div>
-                            <label for="sessionTime" class="text-subtitle margin-xs"> Session Time: </label>
-                            <input type="number" id="sessionTime" min="1" max="200">
+                            <form class="body-spacing">
+                                <div>
+                                    <label for="sessionTime" class="text-subtitle margin-xs"> Session Time: </label>
+                                    <input type="number" id="sessionTime" min="1" max="200">
+                                </div>
+
+                                <div>
+                                    <label for="sessionTime" class="text-subtitle margin-xs"> Short Break: </label>
+                                    <input type="number" id="shortBreak" min="1" max="200">
+                                </div>
+
+                                <div>
+                                    <label for="sessionTime" class="text-subtitle margin-xs"> Long Break: </label>
+                                    <input type="number" id="longBreak" min="1" max="200">
+                                </div>
+
+
+                            </form>
+                            <input class="button-black padding-small text-subtitle width-full" id="submit" type="submit"
+                                value="Start">
                         </div>
 
-                        <div>
-                            <label for="sessionTime" class="text-subtitle margin-xs"> Short Break: </label>
-                            <input type="number" id="shortBreak" min="1" max="200">
+                        <div id="pomodoro-during">
+                            <h1 class="text-body__title"> Pomodoro </h1>
+                            <p id="sessionDescription"> Study Session Time </p>
+
+                            <h2 id="timeDisplay"></h2>
+
+                            <button class="button-black padding-small text-subtitle" id="pausePomodoro"> Pause </button>
+                            <button class="button-black padding-small text-subtitle" id="endPomodoro"> End Session
+                            </button>
                         </div>
-                        
-                        <div>
-                            <label for="sessionTime" class="text-subtitle margin-xs"> Long Break: </label>
-                            <input type="number" id="longBreak" min="1" max="200">
-                        </div>    
-        
-                    
-                    </form>
-                    <input class="button-black padding-small text-subtitle width-full" id="submit" type="submit" value="Start">
                     </div>
 
-                    <div id="pomodoro-during"> 
-                        <h1 class="text-body__title"> Pomodoro </h1>
-                        <p id="sessionDescription"> Study Session Time </p>
-
-                        <h2 id="timeDisplay"></h2>
-
-                        <button class="button-black padding-small text-subtitle" id="pausePomodoro"> Pause </button>
-                        <button class="button-black padding-small text-subtitle" id="endPomodoro"> End Session </button>
-                    </div>
                 </div>
 
             </div>
-        
+    </main>
+    <div id="mobile-sounds-menu" class="menu-overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeMobileSoundsMenu()">&times;</a>
+        <div class="menu-overlay-content">
+            <ul id="mobile-sounds-list"></ul>
+        </div>
     </div>
-</main>
-<div id="mobile-sounds-menu" class="menu-overlay">
- <a href="javascript:void(0)" class="closebtn" onclick="closeSoundsMenu()">&times;</a>
-    <div class="menu-overlay-content">
-        <ul id="mobile-sounds-list"></ul>
-    </div>
-</div>
-<script type="text/javascript" src="js/colorQuantization.js"></script>
-<script type="text/javascript" src="js/mediaPlayer.js"></script>
-<script type="text/javascript" src="js/pomodoro.js"></script>
+    <script type="text/javascript" src="js/colorQuantization.js"></script>
+    <script type="text/javascript" src="js/mediaPlayer.js"></script>
+    <script type="text/javascript" src="js/pomodoro.js"></script>
 </body>
 
 </html>

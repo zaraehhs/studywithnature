@@ -44,40 +44,33 @@ const soundData = [
 ];
 let isMenuOpen = false;
 
-function loadSoundsList() {
-    const soundsList = document.querySelector('#sounds-list');
-    for (let i = 0; i < soundData.length; i++) {
-        const li = `<li data-sound-id=${i} class="list-sound-item" onclick="playSelectedSound(${i})">
-                        <img class="list-sound-image box-shadow" src="${soundData[i].imgUrl}">
-                        <div>
-                            <p class="list-sound-title">${soundData[i].soundTitle}</p>
-                            <p class="list-image-description text-italics margin-none text-opacity">${soundData[i].imgDescription}</p>
-                        </div>
-                    </li>`;
-        soundsList.innerHTML += li;
-    };
-}
-
-function openSoundsMenu() { //mobile 
-    const mobileSoundsMenu = document.getElementById('mobile-sounds-menu');
-    mobileSoundsMenu.style.display = 'block';
-    mobileSoundsMenu.style.width = "75%";
-    document.getElementsByTagName('main')[0].classList.add('blur');
-    document.getElementsByTagName('body')[0].style.overflow = "hidden";
-    const soundsList = document.querySelector('#mobile-sounds-list');
+function generateSoundsList(soundsListElementId) {
+    const soundsList = document.querySelector(`#${soundsListElementId}`);
     if (soundsList && !soundsList.innerHTML) {
         for (let i = 0; i < soundData.length; i++) {
-            // TODO: create separate function that populates sounds list; also used in loadSoundsList()
             const li = `<li data-sound-id=${i} class="list-sound-item" onclick="playSelectedSound(${i})">
                             <img class="list-sound-image box-shadow" src="${soundData[i].imgUrl}">
                             <div>
-                                <p class="list-sound-title">${soundData[i].soundTitle}</p>
+                                <p class="margin-none padding-none">${soundData[i].soundTitle}</p>
                                 <p class="list-image-description text-italics margin-none text-opacity">${soundData[i].imgDescription}</p>
                             </div>
                         </li>`;
             soundsList.innerHTML += li;
         };
     }
+}
+
+function createDesktopSoundsMenu() {
+    generateSoundsList('desktop-sounds-list');
+}
+
+function openMobileSoundsMenu() {
+    const mobileSoundsMenu = document.getElementById('mobile-sounds-menu');
+    mobileSoundsMenu.style.display = 'block';
+    mobileSoundsMenu.style.width = "75%";
+    document.getElementsByTagName('main')[0].classList.add('blur');
+    document.getElementsByTagName('body')[0].style.overflow = "hidden";
+    generateSoundsList('mobile-sounds-list');
     document.addEventListener('click', (e) => {
         const menuIcon = document.getElementById('menu-icon');
         const closeBtn = document.getElementsByClassName('closebtn')[0];
@@ -88,7 +81,7 @@ function openSoundsMenu() { //mobile
     isMenuOpen = true;
 }
 
-function closeSoundsMenu() {
+function closeMobileSoundsMenu() {
     document.getElementById('mobile-sounds-menu').style.display = 'none';
     document.getElementsByTagName('main')[0].classList.remove('blur');
     isMenuOpen = false;
@@ -169,4 +162,4 @@ playPauseButton.addEventListener('click', playPause);
 previousButton.addEventListener('click', playPrevious);
 nextButton.addEventListener('click', playNext);
 volumeInput.addEventListener('change', changeVolume);
-loadSoundsList();
+createDesktopSoundsMenu();
