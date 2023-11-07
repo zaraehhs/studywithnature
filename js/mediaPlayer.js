@@ -75,7 +75,7 @@ function openMobileSoundsMenu() {
         const menuIcon = document.getElementById('menu-icon');
         const closeBtn = document.getElementsByClassName('closebtn')[0];
         if (isMenuOpen && e.target !== mobileSoundsMenu && e.target !== closeBtn && e.target !== menuIcon) {
-            closeSoundsMenu();
+            closeMobileSoundsMenu();
         }
     });
     isMenuOpen = true;
@@ -141,7 +141,7 @@ function playNext(e) {
 function playSelectedSound(id) {
     const mobileSoundsMenu = document.getElementById('mobile-sounds-menu');
     if (mobileSoundsMenu.style.display === 'block') {
-        closeSoundsMenu();
+        closeMobileSoundsMenu();
     }
     updateSoundInfo(id);
     changeBackgroundColors();
