@@ -13,12 +13,6 @@
   margin-bottom: 35px;
 }
 
-.sound-title, .image-description {
-  color: white;
-  margin: 0px;
-  padding: 0px;
-}
-
 .sound-buttons {
   text-align: center;
   align-self: stretch;
@@ -64,7 +58,7 @@
   flex-grow: 1;
 }
 
-#sounds-list {
+#desktop-sounds-list {
   list-style: none;
   overflow: hidden;
   overflow-y: auto;
@@ -76,7 +70,7 @@
   scrollbar-width: none;
 }
 
-#sounds-list::-webkit-scrollbar {
+#desktop-sounds-list::-webkit-scrollbar {
   display: none;
 }
 
@@ -107,9 +101,3 @@
   border-radius: 8px;
   margin-right: 15px;
 }
-
-.list-sound-title, .list-image-location {
-  margin: 0;
-  padding: 0;
-}
-
