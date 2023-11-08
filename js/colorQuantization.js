@@ -48,13 +48,13 @@
 
         let findBiggestColorRange = (rgbValues) => {
             // TODO: change let variables below to const
-            let rMin = 255;
-            let gMin = 255;
-            let bMin = 255;
+            let rMin = Number.MAX_SAFE_INTEGER;
+            let gMin = Number.MAX_SAFE_INTEGER;
+            let bMin = Number.MAX_SAFE_INTEGER;
 
-            let rMax = 0;
-            let gMax = 0;
-            let bMax = 0;
+            let rMax = Number.MIN_SAFE_INTEGER;
+            let gMax = Number.MIN_SAFE_INTEGER;
+            let bMax = Number.MIN_SAFE_INTEGER;
 
             rgbValues.forEach((pixel) => {
                 rMin = Math.min(rMin, pixel.r);
@@ -83,7 +83,7 @@
         console.log(findBiggestColorRange(rgbValues));
 
         const quantization = (rgbValues, depth) => {
-            const MAX_DEPTH = 4; // we only want two final colors 
+            const MAX_DEPTH = 5; 
 
             if (depth === MAX_DEPTH || rgbValues.length === 0) {
                 const color = rgbValues.reduce((pixel1, pixel2) => 
@@ -122,7 +122,7 @@
         createGradient(colors); 
 
         function createGradient(colors){
-            gradientContainer.style.backgroundImage = `linear-gradient(115deg, rgb(${colors[0].r},${colors[0].g},${colors[0].b}) 0%,rgb(${colors[4].r},${colors[4].g},${colors[4].b}) 45%,rgb(${colors[9].r},${colors[9].g},${colors[9].b}) 90% )`;
+            gradientContainer.style.backgroundImage = `linear-gradient(115deg, rgb(${colors[0].r},${colors[0].g},${colors[0].b}) 0%,rgb(${colors[11].r},${colors[11].g},${colors[11].b}) 45%,rgb(${colors[30].r},${colors[30].g},${colors[30].b}) 90% )`;
 
         }
 
