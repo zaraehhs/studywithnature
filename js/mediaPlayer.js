@@ -1,9 +1,15 @@
 const soundData = [
     {
-        imgUrl: 'images/birds.jpg',
-        imgDescription: 'Morning Serenade: Backyard Birds at Play',
-        soundUrl: 'https://audio.jukehost.co.uk/iHA1C4FAgkeCxt9DvGmBjgllP9ALocFf',
-        soundTitle: 'Birds Chirping',
+        imgUrl: 'images/soft-rain.jpg',
+        imgDescription: 'Cozy Downpour',
+        soundUrl: 'https://audio.jukehost.co.uk/xcb125pumHo2Lw4S9bEzfuSsWTToAmva',
+        soundTitle: 'Soft Rain',
+    },
+    {
+        imgUrl: 'images/rain-and-thunder.jpg',
+        imgDescription: 'Embracing the Storm',
+        soundUrl: 'https://audio.jukehost.co.uk/OFAwwnonDnu0eNi6wbAFEF7C0ZHNTTxeh',
+        soundTitle: 'Rain & Thunder',
     },
     {
         imgUrl: 'images/calm-waves.jpg',
@@ -24,22 +30,16 @@ const soundData = [
         soundTitle: 'Forest',
     },
     {
-        imgUrl: 'images/rain-and-thunder.jpg',
-        imgDescription: 'Embracing the Storm',
-        soundUrl: 'https://audio.jukehost.co.uk/OFAwwnonDnu0eNi6wbAFEF7C0ZHNTTxeh',
-        soundTitle: 'Rain & Thunder',
+        imgUrl: 'images/birds.jpg',
+        imgDescription: 'Morning Serenade: Birds at Play',
+        soundUrl: 'https://audio.jukehost.co.uk/iHA1C4FAgkeCxt9DvGmBjgllP9ALocFf',
+        soundTitle: 'Birds Chirping',
     },
     {
         imgUrl: 'images/snowfall.jpg',
         imgDescription: 'Snowed In',
         soundUrl: 'https://audio.jukehost.co.uk/aRFcxDzq9wlEnYwx2GBVqquYob7ekWw7',
         soundTitle: 'Snowfall',
-    },
-    {
-        imgUrl: 'images/soft-rain.jpg',
-        imgDescription: 'Cozy Downpour',
-        soundUrl: 'https://audio.jukehost.co.uk/xcb125pumHo2Lw4S9bEzfuSsWTToAmva',
-        soundTitle: 'Soft Rain',
     },
 ];
 let isMenuOpen = false;
@@ -52,7 +52,7 @@ function generateSoundsList(soundsListElementId) {
                             <img class="list-sound-image box-shadow" src="${soundData[i].imgUrl}">
                             <div>
                                 <p class="margin-none padding-none">${soundData[i].soundTitle}</p>
-                                <p class="list-image-description text-italics margin-none text-opacity">${soundData[i].imgDescription}</p>
+                                <p class="list-image-description text-subtitle margin-none text-opacity">${soundData[i].imgDescription}</p>
                             </div>
                         </li>`;
             soundsList.innerHTML += li;
