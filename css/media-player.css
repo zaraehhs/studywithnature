@@ -56,6 +56,8 @@
 #volume-input {
   accent-color: white;
   flex-grow: 1;
+  outline: none;
+
 }
 
 #desktop-sounds-list {
@@ -100,4 +102,8 @@
   max-width: 100%;
   border-radius: 8px;
   margin-right: 15px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  border: 0px;
 }

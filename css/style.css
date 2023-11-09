@@ -48,7 +48,7 @@ main {
 }
 
 .blur {
-    filter: blur(5px);
+    filter: blur(6px);
     pointer-events: none;
 }
 .menu-button {
@@ -71,6 +71,31 @@ main {
     justify-content: space-between;
 }
 
+.menu-arrow {
+    padding-left: 20px;
+}
+
+.material-symbols-outlined.menu-arrow {
+    font-size: 30px;
+}
+
+#mobile-sounds-list:nth-child(1){
+    border-top: 1px solid #938E8E;
+}
+
+.x-links {
+    position: absolute;
+    bottom:0;
+    right:0;
+}
+
+.x-links a {
+    display: block;
+    margin-bottom: 15px;
+}
+.x-links a:hover {
+    text-decoration: underline;
+}
 @media (max-width:800px) {
     .main {
         position: relative;
@@ -95,14 +120,13 @@ main {
         z-index: 1;
         top: 0;
         left: 25%;
-        background-color: #EFF2F6;
+        background-color: rgba(239, 242, 246);
         overflow-x: hidden;
         transition: 0.5s;
     }
 
     .menu-overlay-content {
         width: 100%;
-        margin-top: 10px;
     }
 
     .menu-overlay-content>ul {
