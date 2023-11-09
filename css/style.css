@@ -50,7 +50,9 @@ main {
 .blur {
     filter: blur(6px);
     pointer-events: none;
+    transform: scale(1.05);
 }
+
 .menu-button {
     display: none;
 }
@@ -145,4 +147,25 @@ main {
         width: 100%;
     }
 
+    .main {
+        max-width: 500px;
+    }
+    .title-navbar {
+        min-width: 500px;
+        margin:auto;
+    }
+
+}
+
+@media (max-width:600px) {
+    .title-navbar {
+        min-width: unset;
+        margin:0;
+    }
+}
+
+@media (max-width:375px){
+    .gradient-background {
+        height:auto;
+    }
 }

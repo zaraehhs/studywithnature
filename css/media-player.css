@@ -104,6 +104,8 @@
   margin-right: 15px;
 }
 
-input[type=range]::-webkit-slider-runnable-track {
-  border: 0px;
+@media (max-width:800px){
+  .sound-image {
+    height:300px;
+  }
 }
