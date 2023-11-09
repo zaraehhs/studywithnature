@@ -89,7 +89,7 @@ function closeMobileSoundsMenu() {
 
 function playPause(e) {
     const state = document.querySelector('#play-pause > span').innerHTML;
-    const audio = document.querySelector('audio');
+    const audio = document.querySelector('#sound-audio');
     if (state === 'play_arrow') {
         audio.play();
         document.querySelector('#play-pause > span').innerHTML = 'pause';
@@ -104,12 +104,12 @@ function updateSoundInfo(newSoundId) {
     document.querySelector('.sound-image').alt = soundData[newSoundId].imgDescription;
     document.querySelector('.sound-title').innerHTML = soundData[newSoundId].soundTitle;
     document.querySelector('.image-description').innerHTML = soundData[newSoundId].imgDescription;
-    document.querySelector('audio').src = soundData[newSoundId].soundUrl;
-    document.querySelector('audio').dataset.soundId = newSoundId;
+    document.querySelector('#sound-audio').src = soundData[newSoundId].soundUrl;
+    document.querySelector('#sound-audio').dataset.soundId = newSoundId;
 }
 
 function playPrevious(e) {
-    const soundId = Number(document.querySelector('audio').dataset.soundId);
+    const soundId = Number(document.querySelector('#sound-audio').dataset.soundId);
     let newSoundId = soundId;
     if (soundId === 0) {
         newSoundId = soundData.length - 1;
@@ -120,12 +120,12 @@ function playPrevious(e) {
     }
     updateSoundInfo(newSoundId);
     changeBackgroundColors();
-    document.querySelector('audio').play();
+    document.querySelector('#sound-audio').play();
     document.querySelector('#playPause > i').innerHTML = 'pause';
 }
 
 function playNext(e) {
-    const soundId = Number(document.querySelector('audio').dataset.soundId);
+    const soundId = Number(document.querySelector('#sound-audio').dataset.soundId);
     let newSoundId = soundId;
     if (soundId === soundData.length - 1) {
         newSoundId = 0;
@@ -134,7 +134,7 @@ function playNext(e) {
     }
     updateSoundInfo(newSoundId);
     changeBackgroundColors();
-    document.querySelector('audio').play();
+    document.querySelector('#sound-audio').play();
     document.querySelector('#play-pause > span').innerHTML = 'pause';
 }
 
@@ -145,12 +145,12 @@ function playSelectedSound(id) {
     }
     updateSoundInfo(id);
     changeBackgroundColors();
-    document.querySelector('audio').play();
+    document.querySelector('#sound-audio').play();
     document.querySelector('#play-pause > span').innerHTML = 'pause';
 }
 
 function changeVolume(e) {
-    const audio = document.querySelector('audio');
+    const audio = document.querySelector('#sound-audio');
     audio.volume = this.value;
 }
 
