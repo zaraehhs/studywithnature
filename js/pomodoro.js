@@ -80,7 +80,9 @@ function startTimer() {
             console.log(`${minutesLeft} : ${secondsLeft} `);
 
             if (minutesLeft === 0 && secondsLeft === 0) {
-                //sound play()
+                const pomodoroAlert = document.querySelector('#pomodoro-audio');
+                pomodoroAlert.volume = 0.1;
+                pomodoroAlert.play();
                 clearInterval(interval);
                 timer.sessions++;
                 console.log("This is session # " + timer.sessions);
@@ -109,7 +111,16 @@ function startTimer() {
 
 }
 
+function stopPomodoroAlert() {
+    const pomodoroAlert = document.querySelector('#pomodoro-audio');
+    if (!pomodoroAlert.paused && !pomodoroAlert.ended && pomodoroAlert.currentTime > 0) {
+        pomodoroAlert.pause();
+        pomodoroAlert.currentTime = 0;
+    }
+}
+
 function endPomodoro() {
+    stopPomodoroAlert();
     duringSection.style.display = "none";
     startSection.style.display = "block";
     clearInterval(interval);
@@ -123,7 +134,9 @@ function pausePomodoro() {
     let remainingMins = pausedTimeArray[0];
     let remainingSeconds = Math.floor((pausedTimeArray[1] * 100 / 60)); //conversion to decimal 
 
-    let newSessionTime = remainingMins + "." + remainingSeconds; 
+    let newSessionTime = remainingMins + "." + remainingSeconds;
+
+    stopPomodoroAlert();
 
     if (pauseButton.innerText === "Pause"){
         clearInterval(interval);
