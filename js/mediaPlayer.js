@@ -57,14 +57,26 @@ function generateSoundsList(soundsListElementId) {
                         </li>`;
             soundsList.innerHTML += li;
         };
+        selectMenuItem(0);
     }
 }
 
-function createDesktopSoundsMenu() {
+function createDesktopMenu() {
     generateSoundsList('desktop-sounds-list');
 }
 
-function openMobileSoundsMenu() {
+function selectMenuItem(id) {
+    document.querySelectorAll('li').forEach(li => {
+        if (Number(li.dataset.soundId) === id) {
+            li.classList.add('active');
+            li.scrollIntoView();
+        } else {
+            li.classList.remove('active');
+        }
+    });
+}
+
+function openMobileMenu() {
     const mobileSoundsMenu = document.getElementById('mobile-sounds-menu');
     mobileSoundsMenu.style.display = 'block';
     mobileSoundsMenu.style.width = "75%";
@@ -75,13 +87,13 @@ function openMobileSoundsMenu() {
         const menuIcon = document.getElementById('menu-icon');
         const closeBtn = document.getElementsByClassName('closebtn')[0];
         if (isMenuOpen && e.target !== mobileSoundsMenu && e.target !== closeBtn && e.target !== menuIcon) {
-            closeMobileSoundsMenu();
+            closeMobileMenu();
         }
     });
     isMenuOpen = true;
 }
 
-function closeMobileSoundsMenu() {
+function closeMobileMenu() {
     document.getElementById('mobile-sounds-menu').style.display = 'none';
     document.getElementsByTagName('main')[0].classList.remove('blur');
     isMenuOpen = false;
@@ -113,15 +125,14 @@ function playPrevious(e) {
     let newSoundId = soundId;
     if (soundId === 0) {
         newSoundId = soundData.length - 1;
-    } else if (soundId === soundData.length - 1) {
-        newSoundId = 0;
     } else {
-        newSoundId += 1;
+        newSoundId -= 1;
     }
     updateSoundInfo(newSoundId);
     changeBackgroundColors();
+    selectMenuItem(newSoundId);
     document.querySelector('#sound-audio').play();
-    document.querySelector('#playPause > i').innerHTML = 'pause';
+    document.querySelector('#play-pause > span').innerHTML = 'pause';
 }
 
 function playNext(e) {
@@ -134,6 +145,7 @@ function playNext(e) {
     }
     updateSoundInfo(newSoundId);
     changeBackgroundColors();
+    selectMenuItem(newSoundId);
     document.querySelector('#sound-audio').play();
     document.querySelector('#play-pause > span').innerHTML = 'pause';
 }
@@ -141,10 +153,11 @@ function playNext(e) {
 function playSelectedSound(id) {
     const mobileSoundsMenu = document.getElementById('mobile-sounds-menu');
     if (mobileSoundsMenu.style.display === 'block') {
-        closeMobileSoundsMenu();
+        closeMobileMenu();
     }
     updateSoundInfo(id);
     changeBackgroundColors();
+    selectMenuItem(id);
     document.querySelector('#sound-audio').play();
     document.querySelector('#play-pause > span').innerHTML = 'pause';
 }
@@ -162,4 +175,4 @@ playPauseButton.addEventListener('click', playPause);
 previousButton.addEventListener('click', playPrevious);
 nextButton.addEventListener('click', playNext);
 volumeInput.addEventListener('change', changeVolume);
-createDesktopSoundsMenu();
+createDesktopMenu();
