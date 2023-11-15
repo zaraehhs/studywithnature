@@ -85,6 +85,10 @@
   border-bottom: 1px solid #938E8E;
 }
 
+.active {
+  background: rgba(161, 161, 161, 0.60);
+}
+
 .list-sound-item:hover {
   background: rgba(161, 161, 161, 0.60);
 }
