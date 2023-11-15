@@ -1,3 +1,4 @@
+let pomodoroForm = document.getElementById('pomodoro-form');
 let startButton = document.getElementById('submit');
 let endButton = document.getElementById('endPomodoro');
 let startSection = document.getElementById('pomodoro-start');
@@ -9,7 +10,6 @@ let longBreak = document.getElementById('longBreak');
 let sessionDescription = document.getElementById('sessionDescription');
 let pauseButton = document.getElementById('pausePomodoro');
 
-startButton.addEventListener('click', startTimer);
 endButton.addEventListener('click', endPomodoro);
 pauseButton.addEventListener('click', pausePomodoro);
 
@@ -150,10 +150,8 @@ function pausePomodoro() {
 
 }
 
-function enableStartBtn() {
-    console.log("runs");
-    if (sessionTime.value && shortBreak.value && longBreak.value){
-        startButton.disabled = true; 
-    }
-}
-enableStartBtn(); 
+pomodoroForm.addEventListener('submit',function(e) {
+    e.preventDefault();
+
+    startTimer();
+});

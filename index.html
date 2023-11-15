@@ -59,26 +59,24 @@
                             <h1 class="text-body__title"> Pomodoro </h1>
                             <p class="body-spacing text-body"> Set times to plan your study session </p>
 
-                            <form class="body-spacing">
+                            <form id="pomodoro-form" class="body-spacing">
                                 <div>
                                     <label for="sessionTime" class="text-subtitle margin-xs"> Session Time: </label>
-                                    <input type="number" id="sessionTime" min="1" max="200">
+                                    <input type="number" id="sessionTime" min="1" max="200" required />
                                 </div>
 
                                 <div>
                                     <label for="sessionTime" class="text-subtitle margin-xs"> Short Break: </label>
-                                    <input type="number" id="shortBreak" min="1" max="200">
+                                    <input type="number" id="shortBreak" min="1" max="200" required />
                                 </div>
 
                                 <div>
                                     <label for="sessionTime" class="text-subtitle margin-xs"> Long Break: </label>
-                                    <input type="number" id="longBreak" min="1" max="200">
+                                    <input type="number" id="longBreak" min="1" max="200" required />
                                 </div>
-
-
+                                <button class="button-black padding-small text-subtitle width-full" id="submit" type="submit"> Start </button>
                             </form>
-                            <input class="button-black padding-small text-subtitle width-full" id="submit" type="submit"
-                                value="Start">
+                           
                         </div>
 
                         <div id="pomodoro-during">
@@ -104,9 +102,9 @@
         <div class="menu-overlay-content">
             <ul class="margin-top__none" id="mobile-sounds-list"></ul>
 
-            <div class="x-links color-black padding-container">
+            <div class="x-links padding-container">
                 <a href="https://twitter.com/maggiecodes_"> @maggiecodes_ </a>
-                <a> @zaraehhs </a>
+                <a href="https://twitter.com/zaraehhs"> @zaraehhs </a>
             </div>
            
         </div>
