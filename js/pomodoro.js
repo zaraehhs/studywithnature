@@ -34,7 +34,6 @@ function startTimer() {
     startSection.style.display = "none";
     duringSection.style.display = "block";
 
-    console.log(state);
     if (state) {
         state = false;
         let totalSeconds;
@@ -42,22 +41,16 @@ function startTimer() {
         totalSeconds = timer.sessionTime * 60;
         if (timer.pausedTime != 0){
             totalSeconds = Math.floor(timer.pausedTime * 60); 
-            console.log("hey your close: " + totalSeconds);
-
             timer.pausedTime = 0;
         }
 
         let modeDetect = () => {
-            console.log("it reaches me");
-            console.log("Mode: " + timer.mode);
-
             if (timer.mode === 'Take a long break, great progress!') {
                 totalSeconds = timer.longBreak * 60;
                 interval = setInterval(updateSeconds, 1000);
 
             } else if (timer.mode === 'It\'\s time for a short break!') {
                 totalSeconds = timer.shortBreak * 60;
-                console.log("break time:" + totalSeconds);
                 interval = setInterval(updateSeconds, 1000);
 
             } else {
@@ -77,15 +70,12 @@ function startTimer() {
             }
             timeDisplay.innerHTML = `${minutesLeft} : ${secondsLeft} `;
 
-            console.log(`${minutesLeft} : ${secondsLeft} `);
-
             if (minutesLeft === 0 && secondsLeft === 0) {
                 const pomodoroAlert = document.querySelector('#pomodoro-audio');
                 pomodoroAlert.volume = 0.1;
                 pomodoroAlert.play();
                 clearInterval(interval);
                 timer.sessions++;
-                console.log("This is session # " + timer.sessions);
 
                 if (timer.sessions % 2 === 0 && !(timer.sessions % 8 === 0)) {  // long break every 8th break
                     timer.mode = 'It\'\s time for a short break!';
@@ -105,8 +95,7 @@ function startTimer() {
             }
         }
         interval = setInterval(updateSeconds, 1000);
-    } else {
-        console.log("session started");
+    } else {  //
     }
 
 }
@@ -124,8 +113,7 @@ function endPomodoro() {
     duringSection.style.display = "none";
     startSection.style.display = "block";
     clearInterval(interval);
-    timer.sessions = 1; 
-    location.reload(); // 
+    timer.sessions = 1;
 }
 
 function pausePomodoro() {

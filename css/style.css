@@ -85,11 +85,16 @@ main {
     border-top: 1px solid #938E8E;
 }
 
+.x-links {
+    margin-top:50px;
+}
+
 .x-links a {
     color: black;
     display: block;
     margin-bottom: 15px;
     text-decoration: none;
+    text-align: right;
 }
 .x-links a:hover {
     text-decoration: underline;

@@ -11,7 +11,7 @@
 }
 
 #timeDisplay{
-    font-size: 24px;
+    font-size: 32px;
 }
 
 form input {
@@ -20,7 +20,7 @@ form input {
     border: none;
 }
 
-form div{
+.form-input div{
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -28,13 +28,14 @@ form div{
     width:100%;
 }
 
-form {
+.form-input {
     width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 15px;
     box-sizing: border-box;
     width: 100%;
+    margin-bottom: 12px;
 }
 
 #pomodoro-during {
