@@ -113,7 +113,10 @@ function endPomodoro() {
     duringSection.style.display = "none";
     startSection.style.display = "block";
     clearInterval(interval);
+    timeDisplay.innerHTML = `0:00`;
+
     timer.sessions = 1;
+    state= true; 
 }
 
 function pausePomodoro() {
