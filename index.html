@@ -59,37 +59,36 @@
                             <h1 class="text-body__title"> Pomodoro </h1>
                             <p class="body-spacing text-body"> Set times to plan your study session </p>
 
-                            <form class="body-spacing">
-                                <div>
-                                    <label for="sessionTime" class="text-subtitle margin-xs"> Session Time: </label>
-                                    <input type="number" id="sessionTime" min="1" max="200">
+                            <form id="pomodoro-form" class="text-center">
+                                <div class="form-input text-left">
+                                    <div>
+                                        <label for="sessionTime" class="text-subtitle margin-xs"> Session Time: </label>
+                                        <input type="number" id="sessionTime" min="1" max="200" required />
+                                    </div>
+
+                                    <div>
+                                        <label for="sessionTime" class="text-subtitle margin-xs"> Short Break: </label>
+                                        <input type="number" id="shortBreak" min="1" max="200" required />
+                                    </div>
+
+                                    <div>
+                                        <label for="sessionTime" class="text-subtitle margin-xs"> Long Break: </label>
+                                        <input type="number" id="longBreak" min="1" max="200" required />
+                                    </div>
                                 </div>
-
-                                <div>
-                                    <label for="sessionTime" class="text-subtitle margin-xs"> Short Break: </label>
-                                    <input type="number" id="shortBreak" min="1" max="200">
-                                </div>
-
-                                <div>
-                                    <label for="sessionTime" class="text-subtitle margin-xs"> Long Break: </label>
-                                    <input type="number" id="longBreak" min="1" max="200">
-                                </div>
-
-
+                                <button class="button-black padding-small text-subtitle" id="submit" type="submit"> Start </button>
                             </form>
-                            <input class="button-black padding-small text-subtitle width-full" id="submit" type="submit"
-                                value="Start">
+                           
                         </div>
 
-                        <div id="pomodoro-during">
-                            <h1 class="text-body__title"> Pomodoro </h1>
-                            <p id="sessionDescription"> Study Session Time </p>
+                        <div id="pomodoro-during" class="text-center">
+                            <h1 class="text-body__title text-left"> Pomodoro </h1>
+                            <p class="text-left" id="sessionDescription"> Study Session Time </p>
 
-                            <h2 id="timeDisplay"></h2>
+                            <h2 id="timeDisplay"> 0:00 </h2>
 
                             <button class="button-black padding-small text-subtitle" id="pausePomodoro"> Pause </button>
-                            <button class="button-black padding-small text-subtitle" id="endPomodoro"> End Session
-                            </button>
+                            <button class="button-black padding-small text-subtitle" id="endPomodoro"> End Session</button>
                         </div>
                     </div>
                     <audio id="pomodoro-audio" src="https://audio.jukehost.co.uk/fDV1AmZFVXzsUH0mAB1reX0Kd1sdIuAY"></audio>
@@ -104,9 +103,9 @@
         <div class="menu-overlay-content">
             <ul class="margin-top__none" id="mobile-sounds-list"></ul>
 
-            <div class="x-links color-black padding-container">
+            <div class="x-links padding-container">
                 <a href="https://twitter.com/maggiecodes_"> @maggiecodes_ </a>
-                <a> @zaraehhs </a>
+                <a href="https://twitter.com/zaraehhs"> @zaraehhs </a>
             </div>
            
         </div>

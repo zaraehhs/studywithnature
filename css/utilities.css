@@ -38,6 +38,14 @@
     opacity: .8;
 }
 
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
 /* Margins */
 .margin-xs {
     margin: 4px;
@@ -85,6 +93,7 @@
     border: none;
     text-align: center;
     margin: auto;
+    width: 100px;
 }
 
 @media (max-width: 800px) {
