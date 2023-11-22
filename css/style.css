@@ -86,17 +86,10 @@ main {
 }
 
 .x-links {
-    margin-top:50px;
+    margin-bottom:50px;
 }
 
-.x-links a {
-    color: black;
-    display: block;
-    margin-bottom: 15px;
-    text-decoration: none;
-    text-align: right;
-}
-.x-links a:hover {
+.x-links-a:hover {
     text-decoration: underline;
 }
 @media (max-width:800px) {
