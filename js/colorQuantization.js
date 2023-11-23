@@ -27,7 +27,6 @@
             let imgDataObj = context.getImageData(0,0,imageDimensions.width,imageDimensions.height).data;
             imgData = Array.from(imgDataObj);
 
-            // console.log(imgData);
             let rgbValues = [];
             // Organize Array to into RGB format
             let buildRgb = (imgData) => {
@@ -42,7 +41,6 @@
                 }
                 return rgbValues;
             };
-        console.log(buildRgb(imgData)); 
 
         // Color Quantization using the Median Cut algorithm 
 
@@ -80,7 +78,6 @@
                 return "b";
             }
             };
-        console.log(findBiggestColorRange(rgbValues));
 
         const quantization = (rgbValues, depth) => {
             const MAX_DEPTH = 5; 
@@ -115,7 +112,7 @@
                 ...quantization(rgbValues.slice(mid + 1), depth + 1),
             ];
         };
-        console.log('final colors:', quantization(rgbValues, 0)); // 0 is the root or the starting point
+
         let colors =  quantization(rgbValues, 0); 
         let gradientContainer = document.getElementById('gradientContainer');
 
