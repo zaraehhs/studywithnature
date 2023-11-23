@@ -42,8 +42,9 @@
                 return rgbValues;
             };
 
+            buildRgb(imgData);
+            
         // Color Quantization using the Median Cut algorithm 
-
         let findBiggestColorRange = (rgbValues) => {
             // TODO: change let variables below to const
             let rMin = Number.MAX_SAFE_INTEGER;
@@ -78,6 +79,8 @@
                 return "b";
             }
             };
+
+        findBiggestColorRange(rgbValues);
 
         const quantization = (rgbValues, depth) => {
             const MAX_DEPTH = 5; 
