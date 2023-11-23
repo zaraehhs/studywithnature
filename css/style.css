@@ -86,20 +86,18 @@ main {
 }
 
 .x-links {
-    margin-top:50px;
-}
-
-.x-links a {
-    color: black;
-    display: block;
-    margin-bottom: 15px;
-    text-decoration: none;
+    margin-bottom:50px;
     text-align: right;
 }
-.x-links a:hover {
+
+.x-links-a:hover {
     text-decoration: underline;
 }
 @media (max-width:800px) {
+    .x-links {
+        text-align: center;
+    }
+    
     .main {
         position: relative;
         flex-wrap: wrap;
