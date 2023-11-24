@@ -183,5 +183,5 @@ const volumeInput = document.querySelector('#volume-input');
 playPauseButton.addEventListener('click', playPause);
 previousButton.addEventListener('click', playPrevious);
 nextButton.addEventListener('click', playNext);
-volumeInput.addEventListener('change', changeVolume);
+volumeInput.addEventListener('input', changeVolume);
 createDesktopMenu();
