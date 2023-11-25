@@ -162,3 +162,9 @@ main {
         margin:0;
     }
 }
+
+@media (max-width:375px), (max-height: 840px){
+    .gradient-background {
+        height:auto;
+    }
+}
