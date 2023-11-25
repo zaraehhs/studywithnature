@@ -168,3 +168,8 @@ main {
         height:auto;
     }
 }
+@media (max-height: 840px) {
+    .gradient-background {
+        height:auto;
+    }
+}
