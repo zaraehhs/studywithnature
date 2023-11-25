@@ -76,7 +76,9 @@ function selectMenuItem(id) {
     document.querySelectorAll('li').forEach(li => {
         if (Number(li.dataset.soundId) === id) {
             li.classList.add('active');
-            li.scrollIntoView();
+            // scroll selected sound into view within desktop menu without entire page scrolling down
+            let soundsList = document.querySelector('#desktop-sounds-list');
+            soundsList.scrollTop = li.offsetTop - soundsList.offsetTop;
         } else {
             li.classList.remove('active');
         }
