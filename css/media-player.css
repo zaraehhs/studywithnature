@@ -70,6 +70,7 @@
   border-radius: 8px;
   margin-top: 0;
   scrollbar-width: none;
+  overscroll-behavior: contain;
 }
 
 #desktop-sounds-list::-webkit-scrollbar {
