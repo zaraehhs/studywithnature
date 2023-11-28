@@ -176,6 +176,17 @@ function changeVolume(e) {
     audio.volume = this.value;
 }
 
+function updateVolumeBar(e){
+    let tempSliderValue = e.target.value; 
+    let progress = (tempSliderValue / volumeInput.max) * 100;   
+    volumeInput.style.background = `linear-gradient(to right, #ffffff ${progress}%,  rgba(239, 242, 246, 0.41) ${progress}%)`;
+}
+
+function initVolumeBar(){
+    let progress = (volumeInput.value / volumeInput.max) * 100;   
+    volumeInput.style.background = `linear-gradient(to right, #ffffff ${progress}%,  rgba(239, 242, 246, 0.41) ${progress}%)`;
+}
+
 const playPauseButton = document.querySelector('#play-pause');
 const previousButton = document.querySelector('#previous');
 const nextButton = document.querySelector('#next');
@@ -184,4 +195,7 @@ playPauseButton.addEventListener('click', playPause);
 previousButton.addEventListener('click', playPrevious);
 nextButton.addEventListener('click', playNext);
 volumeInput.addEventListener('change', changeVolume);
+volumeInput.addEventListener('input', updateVolumeBar);
+
 createDesktopMenu();
+initVolumeBar();
