@@ -105,6 +105,8 @@ function openMobileMenu() {
 function closeMobileMenu() {
     document.getElementById('mobile-sounds-menu').style.display = 'none';
     document.getElementsByTagName('main')[0].classList.remove('blur');
+    document.getElementsByTagName('body')[0].style.overflow = "auto";
+
     isMenuOpen = false;
 }
 
