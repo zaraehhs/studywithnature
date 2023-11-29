@@ -26,10 +26,10 @@ form input {
     box-sizing: border-box;
     position: relative;
     width:100%;
+    min-width: 0;
 }
 
 .form-input {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 15px;
