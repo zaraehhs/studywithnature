@@ -87,8 +87,7 @@ function selectMenuItem(id) {
 
 function openMobileMenu() {
     const mobileSoundsMenu = document.getElementById('mobile-sounds-menu');
-    mobileSoundsMenu.style.display = 'block';
-    mobileSoundsMenu.style.width = "75%";
+    mobileSoundsMenu.classList.add('menu-active');
     document.getElementsByTagName('main')[0].classList.add('blur');
     document.getElementsByTagName('body')[0].style.overflow = "hidden";
     generateSoundsList('mobile-sounds-list');
@@ -103,7 +102,8 @@ function openMobileMenu() {
 }
 
 function closeMobileMenu() {
-    document.getElementById('mobile-sounds-menu').style.display = 'none';
+    const mobileSoundsMenu = document.getElementById('mobile-sounds-menu');
+    mobileSoundsMenu.classList.remove('menu-active');
     document.getElementsByTagName('main')[0].classList.remove('blur');
     document.getElementsByTagName('body')[0].style.overflow = "auto";
 
