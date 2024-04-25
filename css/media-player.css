@@ -118,7 +118,7 @@
 }
 
 .list-sound-item:hover {
-  background: rgba(161, 161, 161, 0.60);
+  background: #a1a1a199;
 }
 
 .list-sound-item > div {
