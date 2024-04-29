@@ -12,10 +12,10 @@ const Playlist = () => {
   const soundItems = soundData.map((sound, index) =>
     <li key={index}
       className={`flex flex-row pt-4 pb-4 pl-5  hover:bg-[#a1a1a199] ${selectedSound === index ? 'bg-[#a1a1a199]' : 'bg-[#eff2f6b5]'}`} onClick={() => handleSoundSelect(index)}>
-      <Image className="h-12 box-border rounded-lg mr-4 shadow-lg" width={50} height={50} src={soundData[index].imgUrl} alt={soundData[index].imgDescription} />
+      <Image className="h-12 box-border rounded-lg mr-4 shadow-lg" width={50} height={50} src={soundData[index].imgUrl} alt={soundData[index].imgAlt} />
       <div className="flex flex-col justify-center">
-        <p className="text-black leading-3">{soundData[index].soundTitle}</p>
-        <p className="text-sm opacity-80 text-black">{soundData[index].soundSubtitle}</p>
+        <p className="text-black leading-3">{soundData[index].title}</p>
+        <p className="text-sm opacity-80 text-black">{soundData[index].subtitle}</p>
       </div>
     </li>
   );
