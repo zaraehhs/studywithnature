@@ -1,13 +1,12 @@
 import Header from "./components/Header";
-import Playlist from "./components/Playlist";
+import SoundContainer from "./components/SoundContainer";
 
 export default function Home() {
   return (
-    <main className="p-12 lg:p-28">
-    <Header />
-    <Playlist />
+    <main className="flex flex-col max-w-5xl w-full m-auto p-12 lg:p-28">
+      <Header />
+      <SoundContainer />
       {/* 
-        <MediaPlayer />
         <Pomodoro /> 
       <Footer />
     */}   

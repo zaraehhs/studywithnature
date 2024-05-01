@@ -1,0 +1,32 @@
+#volume-input {
+  flex-grow: 1;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none; 
+  cursor: pointer;
+  border-radius: 15px;
+  height: 6px;
+  background: rgba(239, 242, 246, 0.41);
+}
+
+#volume-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none; 
+  height: 15px;
+  width: 15px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: none;
+  transition: .2s ease-in-out;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+#volume-input::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: none;
+  transition: .2s ease-in-out;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+}
