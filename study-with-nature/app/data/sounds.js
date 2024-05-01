@@ -1,4 +1,4 @@
-const soundData = [
+const sounds = [
   {
     url: 'https://audio.jukehost.co.uk/xcb125pumHo2Lw4S9bEzfuSsWTToAmva',
     title: 'Soft Rain',
@@ -50,4 +50,4 @@ const soundData = [
   },
 ];
 
-export default soundData
+export default sounds

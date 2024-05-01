@@ -5,7 +5,7 @@ import '../styles/media-player.css';
 
 const VolumeSlider = ({ volume, handleVolumeChange }) => {
   return (
-    <div className="flex flex-row items-center mt-2.5">
+    <div className="hidden md:flex md:flex-row md:items-center md:mt-2.5">
       <SpeakerXMarkIcon className="w-10 p-0" />
       <input 
         id="volume-input" 
