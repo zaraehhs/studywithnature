@@ -22,6 +22,7 @@ const SoundContainer = () => {
 
   const handleSelectedSound = (index) => {
     setSelectedSoundIndex(index);
+    setIsPlaying(true);
   };
 
   const playPrevious = () => {
