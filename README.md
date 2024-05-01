@@ -6,11 +6,10 @@ Study with Nature is a responsive web app that was created with the purpose of i
 The app currently lives at https://www.studywithnature.com.
 
 ## Features
-* Tech Stack: HTML, CSS, and Vanilla JavaScript
+* This project was originally built using HTML, CSS, and Vanilla JavaScript. It has since been refactored and now uses React, Next.js, and TailwindCSS.
 * Responsive Media Player with play, pause, skip, and volume control functionality
 * Pomodoro Timer with the capability to customize a study schedule with defined study and break sessions
-* Dynamic background colors generated with each audio selection, which was implemented using [color quantization](https://en.wikipedia.org/wiki/Color_quantization), more specifically using the Median Cut Algorithm, to dynamically create background gradients based on
-the selected audio’s cover image
+* Dynamic background colors generated with each audio selection, which was implemented using [color quantization](https://en.wikipedia.org/wiki/Color_quantization), more specifically using the Median Cut Algorithm, to dynamically create background gradients based on the selected audio’s cover image
 
 ## Installation
 1. Clone this repo locally
