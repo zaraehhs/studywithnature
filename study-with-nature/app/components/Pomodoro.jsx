@@ -1,58 +1,134 @@
-import React from 'react'
+"use client"
+import React, { useState, useEffect, useRef } from 'react'
+import PomodoroPause from './PomodoroPause';
+import PomodoroForm from './PomodoroForm';
+import PomodoroEnd from './PomodoroEnd';
 
 const Pomodoro = () => {
+
+    const [showDuringDisplay, setDuringDisplay] = useState(false);
+    const [timeDisplay, setTimeDisplay] = useState("0:00");
+    const [mode, setPomodoroMode] = useState("Study time!");
+   // const [pausedTime, setPausedTime] = useState(0);
+    const [toggle, setToggle] = useState(false);
+    // const [totalSeconds, setTotalSeconds] = useState(0);
+   
+    
     let timer = {
         sessionTime: 0,
         shortBreak: 0,
         longBreak: 0,
-        pausedTime: 0,
         sessions: 1,
-        mode: 'Study time!',
     }
-    
+    useEffect(() => {
     let interval;
-    let state = true;
+    if (toggle) {
+      interval = setInterval(updateSeconds, 1000);
+    }
+        return () => {
+            clearInterval(interval);
+        };
+    }, [toggle]);
+
+    const startTimer = (event) => {
+        timer.sessionTime = event.target.sessionTime.value;
+        timer.shortBreak = event.target.shortBreak.value;
+        timer.longBreak = event.target.longBreak.value;
+
+        event.preventDefault();
+        setDuringDisplay(true);
+
+ 
+       let totalSeconds = timer.sessionTime * 60 ;
+        console.log("totalseconds" + totalSeconds)
+
+        // if (pausedTime != 0) {
+        //     totalSeconds = Math.floor(pausedTime * 60);
+        //     setPausedTime(0); 
+        // }    
+       setToggle(true)
+       return totalSeconds;
+    
+        //}
+    }
+
+    
+    const updateSeconds = () => {
+        // setTotalSeconds(prevAutoCount => prevAutoCount - 1)
+        totalSeconds--;
+         console.log(totalSeconds)
+         let minutesLeft = Math.floor(totalSeconds / 60);
+         let secondsLeft = totalSeconds % 60;
+ 
+         if (secondsLeft < 10 && secondsLeft > 0) {
+             secondsLeft = '0' + secondsLeft;
+         }
+         setTimeDisplay(`${minutesLeft} : ${secondsLeft}`);
+ 
+         if (minutesLeft === 0 && secondsLeft === 0) {
+             // const pomodoroAlert = document.querySelector('#pomodoro-audio');
+             // pomodoroAlert.volume = 0.1;
+             // pomodoroAlert.play();
+             setToggle(false)
+             timer.sessions++;
+ 
+             if (timer.sessions % 2 === 0 && !(timer.sessions % 8 === 0)) {  // long break every 8th break
+                 setPomodoroMode('It\'\s time for a short break!');
+                 modeDetect();
+ 
+             } else if (timer.sessions % 8 === 0) {
+                 setPomodoroMode('Take a long break, great progress!');
+                 modeDetect();
+             } else {
+ 
+                 setPomodoroMode('Study time!');
+                 modeDetect();
+             }
+         }
+     }
+    
+
+    let modeDetect = () => { //Change to useEffect?
+        if (mode === 'Take a long break, great progress!') {
+            totalSeconds = timer.longBreak * 60;
+            setToggle(true)
+
+        } else if (mode === 'It\'\s time for a short break!') {
+            totalSeconds = timer.shortBreak * 60;
+            setToggle(true)
+
+        } else {
+            totalSeconds = timer.sessionTime * 60;
+            setToggle(true)
+
+        }
+    }
 
 
-  return (
-    <div className="bg-[#eff2f6b5] rounded-lg mt-8 p-4 text-black box-shadow">
-                        <div id="pomodoro-start">
-                            <h1 className="font-bold text-xl"> Pomodoro </h1>
-                            <p class=""> Set times to plan your study session </p>
+    useEffect(() => {
+        let interval;
+        if (toggle) {
+          interval = setInterval(updateSeconds, 1000);
+        }
+            return () => {
+                clearInterval(interval);
+            };
+        }, [mode]);
+    return (
+        <div className="bg-[#eff2f6b5] rounded-lg mt-8 p-4 text-black box-shadow">
+            <div id="pomodoro-start">
+                <h1 className="font-bold text-xl"> Pomodoro </h1>
+                <p className="text-left"> {showDuringDisplay ? mode : "Set times to plan your study session"}</p>
+                <h2 className={`${showDuringDisplay ? 'block' : 'hidden'}`}> {timeDisplay}</h2>
+                <PomodoroForm {...{ showDuringDisplay, startTimer }} />
 
-                            <form id="pomodoro-form" className="">
-                                <div className="flex justify-between gap-2 my-5">
-                                    <div>
-                                        <label for="sessionTime" className="text-left text-sm"> Session Time: </label>
-                                        <input className="rounded-full w-full p-1" type="number" id="sessionTime" min="1" max="200" required />
-                                    </div>
-
-                                    <div>
-                                        <label for="sessionTime" className="text-left text-sm"> Short Break: </label>
-                                        <input className="rounded-full w-full p-1" type="number" id="shortBreak" min="1" max="200" required />
-                                    </div>
-
-                                    <div>
-                                        <label for="sessionTime" className="text-left text-sm"> Long Break: </label>
-                                        <input className="rounded-full w-full p-1" type="number" id="longBreak" min="1" max="200" required />
-                                    </div>
-                                </div>
-                                <button className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2" id="submit" type="submit"> Start </button>
-                            </form>
-                           
-                        </div>
-
-                        <div id="pomodoro-during" className="text-center hidden">
-                            <h1 class="text-body__title text-left"> Pomodoro </h1>
-                            <p class="text-left" id="sessionDescription"> Study Session Time </p>
-
-                            <h2 id="timeDisplay"> 0:00 </h2>
-
-                            <button class="button-black padding-small text-subtitle" id="pausePomodoro"> Pause </button>
-                            <button class="button-black padding-small text-subtitle" id="endPomodoro"> End Session</button>
-                        </div>
-                    </div>
-  )
+                {/* 
+                <PomodoroPause {...{ showDuringDisplay, timeDisplay, startTimer, setPausedTime, setTimeDisplay }} />
+                <PomodoroEnd {...{ setDuringDisplay, showDuringDisplay, setTimeDisplay, timer, setToggle }} />
+    */}
+            </div>
+        </div>
+    )
 }
 
 export default Pomodoro
