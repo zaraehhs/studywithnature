@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 
-const PomodoroPause = ({showDuringDisplay, timeDisplay, setIntervalState, startTimer, setPausedTime, setToggle}) => {
+const PomodoroPause = ({showDuringDisplay, timeDisplay, setTimeDisplay, setTotalSeconds, setToggle}) => {
   const [pauseButton, setPauseButton] = useState("Pause");
+
   const pausePomodoro = () => {
     let pausedTime = timeDisplay;
     let pausedTimeArray = pausedTime.split(' : ');
     let remainingMins = pausedTimeArray[0];
-    let remainingSeconds = Math.floor((pausedTimeArray[1] * 100 / 60)); //conversion to decimal 
+    let remainingSeconds = Math.floor((pausedTimeArray[1] * 100 / 60));
 
     let newSessionTime = remainingMins + "." + remainingSeconds;
 
@@ -15,11 +16,11 @@ const PomodoroPause = ({showDuringDisplay, timeDisplay, setIntervalState, startT
     if (pauseButton === "Pause"){
         setToggle(false)
         setPauseButton("Resume");
-        setPausedTime(parseFloat(newSessionTime));
+        setTimeDisplay(pausedTime);
     } else {
         setPauseButton("Pause");
-        setIntervalState(true);
-        startTimer();
+        setTotalSeconds( Math.floor(newSessionTime * 60));
+        setToggle(true);
     }
 
 }

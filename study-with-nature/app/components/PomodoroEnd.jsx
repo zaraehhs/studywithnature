@@ -1,13 +1,12 @@
 import React from 'react'
 
-const PomodoroEnd = ({setDuringDisplay, showDuringDisplay, setTimeDisplay, timer, setIntervalState, setToggle}) => {
+const PomodoroEnd = ({setDuringDisplay, showDuringDisplay, setTimeDisplay, setToggle, setSessionCount}) => {
     const endPomodoro = () => {
         //stopPomodoroAlert();
         setToggle(false)
         setDuringDisplay(false);
         setTimeDisplay("0:00");
-        timer.sessions = 1;
-       // setIntervalState(true);
+        setSessionCount(0); 
     }
 
     // const stopPomodoroAlert = () => {
