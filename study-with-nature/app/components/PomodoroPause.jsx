@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const PomodoroPause = ({showDuringDisplay, timeDisplay, setTimeDisplay, setTotalSeconds, setToggle}) => {
+const PomodoroPause = ({showDuringDisplay, timeDisplay, setTimeDisplay, setTotalSeconds, setToggle, setSoundToggle}) => {
   const [pauseButton, setPauseButton] = useState("Pause");
 
   const pausePomodoro = () => {
@@ -11,7 +11,7 @@ const PomodoroPause = ({showDuringDisplay, timeDisplay, setTimeDisplay, setTotal
 
     let newSessionTime = remainingMins + "." + remainingSeconds;
 
-    //stopPomodoroAlert();
+    setSoundToggle(false); 
 
     if (pauseButton === "Pause"){
         setToggle(false)
