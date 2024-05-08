@@ -1,50 +1,48 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 
-import sounds from '../data/sounds';
+import SoundContext from '../contexts/SoundContext';
+import MenuContext from '../contexts/MenuContext';
 
 import Playlist from './Playlist';
 import MediaPlayer from './MediaPlayer';
 
 const SoundContainer = () => {
-  const [selectedSoundIndex, setSelectedSoundIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { soundIndex, handleSelectedSound, isPlaying, updatePlayStatus, sounds } = useContext(SoundContext);
+  const { isMenuVisible, closeMobileMenu } = useContext(MenuContext);
   const [volume, setVolume] = useState(1);
 
   const soundRef = useRef();
 
-  const selectedSound = sounds[selectedSoundIndex];
+  const selectedSound = sounds[soundIndex];
 
   const togglePlayPause = () => {
-    setIsPlaying(!isPlaying);
+    updatePlayStatus(!isPlaying);
   };
 
-  const handleSelectedSound = (index) => {
-    setSelectedSoundIndex(index);
-    setIsPlaying(true);
+  const playSelectedSound = (index) => {
+    handleSelectedSound(index);
   };
 
   const playPrevious = () => {
-    let newSoundIndex = selectedSoundIndex;
-    if (selectedSoundIndex === 0) {
+    let newSoundIndex = soundIndex;
+    if (soundIndex === 0) {
       newSoundIndex = sounds.length - 1;
     } else {
       newSoundIndex -= 1;
     }
-    handleSelectedSound(newSoundIndex);
-    setIsPlaying(true);
+    playSelectedSound(newSoundIndex);
   };
 
   const playNext = () => {
-    let newSoundIndex = selectedSoundIndex;
-    if (selectedSoundIndex === sounds.length - 1) {
+    let newSoundIndex = soundIndex;
+    if (soundIndex === sounds.length - 1) {
       newSoundIndex = 0;
     } else {
       newSoundIndex += 1;
     }
-    handleSelectedSound(newSoundIndex);
-    setIsPlaying(true);
+    playSelectedSound(newSoundIndex);
   };
 
   const handleVolumeChange = (newVolume) => {
@@ -59,13 +57,14 @@ const SoundContainer = () => {
         soundRef.current.pause();
       }
       soundRef.current.volume = volume;
+      if (isMenuVisible) closeMobileMenu();
     }
-  }, [selectedSoundIndex, soundRef, isPlaying, volume]);
+  }, [soundIndex, soundRef, isPlaying, volume]);
 
   return (
     <div className="flex flex-row gap-12">
       <MediaPlayer {...{selectedSound, soundRef, isPlaying, togglePlayPause, playPrevious, playNext, volume, handleVolumeChange}} />
-      <Playlist {...{selectedSoundIndex, handleSelectedSound, sounds}} />
+      <Playlist {...{soundIndex, playSelectedSound, sounds}} />
     </div>
   )
 }
