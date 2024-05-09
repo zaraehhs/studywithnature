@@ -61,7 +61,7 @@ const Playlist = () => {
   return (
     <>
       {/* Desktop */}
-      <div className="hidden lg:block lg:bg-[#eff2f6b5] lg:w-full lg:h-80 lg:overflow-y-scroll lg:no-scrollbar lg:rounded-lg">
+      <div className="hidden lg:block lg:bg-[#eff2f6b5] lg:w-full lg:h-[350px] lg:overflow-y-scroll lg:no-scrollbar lg:rounded-lg">
         <ul id="desktop-sounds-list" className="divide-y divide-[#938E8E]">{soundItems()}</ul>
       </div>
       {/* Mobile */}

@@ -6,7 +6,7 @@ const DisplayMedia = ({ selectedSound }) => {
     <div className="flex flex-col relative">
       <Image 
         id="soundImg" 
-        className="box-border shadow-lg lg:max-w-full lg:h-80 rounded-lg lg:self-stretch lg:mb-8" 
+        className="box-border shadow-lg lg:max-w-full lg:h-[350px] rounded-lg lg:self-stretch lg:mb-8" 
         width={500} 
         height={350} 
         src={selectedSound.imgUrl}

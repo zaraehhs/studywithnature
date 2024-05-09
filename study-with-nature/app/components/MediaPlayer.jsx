@@ -63,7 +63,6 @@ const MediaPlayer = () => {
 
   return (
     <div className="flex flex-col relative">
-      <h1 className="text-white text-3xl lg:text-5xl font-bold">Study with Nature</h1>
       <DisplayMedia selectedSound={selectedSound} />
       <Controls {...{selectedSound, soundRef, isPlaying, togglePlayPause, playPrevious, playNext, volume, handleVolumeChange}} />
     </div>
