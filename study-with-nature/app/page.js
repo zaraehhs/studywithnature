@@ -8,7 +8,7 @@ import { MenuProvider } from "./contexts/MenuContext";
 export default function Home() {
   return (
     <div>
-      <main className="flex flex-col max-w-5xl w-full m-auto p-12 lg:p-28">
+      <main className="flex flex-col max-w-5xl w-full m-auto p-6 lg:p-28">
         <SoundProvider>
           <MenuProvider>
             <MediaPlayer />

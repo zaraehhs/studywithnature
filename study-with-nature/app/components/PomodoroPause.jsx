@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const PomodoroPause = ({showDuringDisplay, timeDisplay, setTimeDisplay, setTotalSeconds, setToggle, setSoundToggle}) => {
+const PomodoroPause = ({showDuringDisplay, timeDisplay, setTimeDisplay, setTotalSeconds, setIntervalToggle, setSoundToggle}) => {
   const [pauseButton, setPauseButton] = useState("Pause");
 
   const pausePomodoro = () => {
@@ -14,13 +14,13 @@ const PomodoroPause = ({showDuringDisplay, timeDisplay, setTimeDisplay, setTotal
     setSoundToggle(false); 
 
     if (pauseButton === "Pause"){
-        setToggle(false)
+        setIntervalToggle(false)
         setPauseButton("Resume");
         setTimeDisplay(pausedTime);
     } else {
         setPauseButton("Pause");
         setTotalSeconds( Math.floor(newSessionTime * 60));
-        setToggle(true);
+        setIntervalToggle(true);
     }
 
 }

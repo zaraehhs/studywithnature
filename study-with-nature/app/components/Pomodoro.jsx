@@ -10,7 +10,7 @@ const Pomodoro = () => {
     const [timeDisplay, setTimeDisplay] = useState("0:00");
     const [mode, setPomodoroMode] = useState("Study time!");
     const [soundToggle, setSoundToggle] = useState(false);
-    const [toggle, setToggle] = useState(false);
+    const [toggleInterval, setIntervalToggle] = useState(false);
     const [totalSeconds, setTotalSeconds] = useState(0);
     const [sessionCount, setSessionCount] = useState(0);
     const [timer, setTimer] = useState({
@@ -20,6 +20,7 @@ const Pomodoro = () => {
     });
 
     const startTimer = (event) => {
+
         setTimer(prevState => ({
             ...prevState,
             sessionTime: event.target.sessionTime.value,
@@ -32,19 +33,19 @@ const Pomodoro = () => {
 
         setTotalSeconds(timer.sessionTime * 60);
         setSessionCount(0);
-        setToggle(true)
+        setIntervalToggle(true)
 
     }
 
     useEffect(() => {
         let interval;
-        if (toggle) {
+        if (toggleInterval) {
             interval = setInterval(() => setTotalSeconds(totalSeconds => totalSeconds - 1), 1000);
         }
         return () => {
             clearInterval(interval);
         };
-    }, [toggle]);
+    }, [toggleInterval]);
 
 
     useEffect(() => {
@@ -57,14 +58,14 @@ const Pomodoro = () => {
         setTimeDisplay(`${minutesLeft} : ${secondsLeft}`);
         if (minutesLeft === 0 && secondsLeft === 0) {
             setSoundToggle(true);
-            setToggle(false)
+            triggerAlert();
+            setIntervalToggle(false)
             setSessionCount(sessionCount => sessionCount + 1);
         }
 
     }, [totalSeconds]);
 
     useEffect(() => {
-        console.log("This is the sessionCount" + sessionCount)
         if (sessionCount % 2 === 0 && !(sessionCount % 8 === 0)) {
             setPomodoroMode('It\'\s time for a short break!');
             setTotalSeconds(timer.shortBreak * 60);
@@ -75,42 +76,36 @@ const Pomodoro = () => {
             setPomodoroMode('Study time!');
             setTotalSeconds(timer.sessionTime * 60);
         }
-        setToggle(true);
+        setIntervalToggle(true);
     }, [sessionCount]);
 
-
-    useEffect(() => {
+    const triggerAlert = () => {
         const pomodoroAlert = document.querySelector('#pomodoro-audio');
 
-        if (soundToggle) {
+        if (soundToggle && sessionCount != 0) {
             pomodoroAlert.volume = 0.1;
             pomodoroAlert.play();
-        } else {
-            if (!pomodoroAlert.paused && !pomodoroAlert.ended && pomodoroAlert.currentTime > 0) {
-                pomodoroAlert.pause();
-                pomodoroAlert.currentTime = 0;
-            }
-
-        }
-
-    }, [soundToggle]);
+        } 
+    }
 
     return (
         <>
-            <div className="bg-[#eff2f6b5] rounded-lg mt-8 p-4 text-black box-shadow">
+            <div className="bg-[#eff2f6b5] rounded-lg mt-8 p-4 text-black box-shadow text-center">
                 <div id="pomodoro-start">
-                    <h1 className="font-bold text-xl"> Pomodoro </h1>
+                    <h1 className="font-bold text-xl text-left"> Pomodoro </h1>
                     <p className="text-left"> {showDuringDisplay ? mode : "Set times to plan your study session"}</p>
-                    <h2 className={`${showDuringDisplay ? 'block' : 'hidden'}`}> {timeDisplay}</h2>
+                    <h2 className={`${showDuringDisplay ? 'block' : 'hidden'} my-4 font-bold text-2xl`}> {timeDisplay}</h2>
                     <PomodoroForm {...{ showDuringDisplay, startTimer }} />
-                    <PomodoroPause {...{ showDuringDisplay, timeDisplay, setTimeDisplay, setTotalSeconds, setToggle, setSoundToggle }} />
-                    <PomodoroEnd {...{ setDuringDisplay, showDuringDisplay, setTimeDisplay, setToggle, setSessionCount, setSoundToggle }} />
+                    <div className="flex justify-center">  
+                    <PomodoroPause {...{ showDuringDisplay, timeDisplay, setTimeDisplay, setTotalSeconds, setIntervalToggle, setSoundToggle }} />
+                    <PomodoroEnd {...{ setDuringDisplay, showDuringDisplay, setTimeDisplay, setTotalSeconds, setIntervalToggle, setSessionCount, setSoundToggle, setPomodoroMode, sessionCount }} />
+                    </div>
                 </div>
             </div>
-            <p class="text-white shadow-lg"> Made with ✨ by
-                <a href="https://twitter.com/maggiecodes_" target="_blank"> @maggiecodes </a>&
-                <a href="https://twitter.com/zaraehhs" target="_blank"> @zaraehhs </a></p>
-            <audio id="pomodoro-audio" src="https://audio.jukehost.co.uk/fDV1AmZFVXzsUH0mAB1reX0Kd1sdIuAY"></audio>
+            <p className="text-white shadow-lg my-4"> Made with ✨ by
+                <a href="https://twitter.com/maggiecodes_" target="_blank" className='underline'> @maggiecodes </a>&
+                <a href="https://twitter.com/zaraehhs" target="_blank" className='underline'> @zaraehhs </a></p>
+                <audio id="pomodoro-audio" src="https://audio.jukehost.co.uk/fDV1AmZFVXzsUH0mAB1reX0Kd1sdIuAY"></audio>
         </>
     )
 }
