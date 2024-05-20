@@ -3,7 +3,7 @@ Study with Nature is a responsive web app that was created with the purpose of i
 
 ![thumbnail](https://github.com/zaraehhs/studywithnature/assets/8771586/a1168461-76b9-47c4-a092-6fd8235055bc)
 
-The app currently lives at https://www.studywithnature.com.
+Check out the app [here](https://musical-basbousa-5e92fa.netlify.app/)!
 
 ## Features
 * This project was originally built using HTML, CSS, and Vanilla JavaScript. It has since been refactored and now uses React, Next.js, and TailwindCSS.
