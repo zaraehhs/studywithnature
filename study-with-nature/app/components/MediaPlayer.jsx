@@ -4,6 +4,7 @@ import React, { useContext, useState, useRef, useEffect } from 'react';
 
 import SoundContext from '../contexts/SoundContext';
 import MenuContext from '../contexts/MenuContext';
+import BackgroundContext from '../contexts/BackgroundContext';
 
 import DisplayMedia from './DisplayMedia';
 import Controls from './Controls';
@@ -11,6 +12,7 @@ import Controls from './Controls';
 const MediaPlayer = () => {
   const { soundIndex, handleSelectedSound, isPlaying, updatePlayStatus, sounds } = useContext(SoundContext);
   const { isMenuVisible, closeMobileMenu } = useContext(MenuContext);
+  const { changeBackgroundColors } = useContext(BackgroundContext);
   const [volume, setVolume] = useState(1);
 
   const soundRef = useRef();
@@ -57,6 +59,7 @@ const MediaPlayer = () => {
         soundRef.current.pause();
       }
       soundRef.current.volume = volume;
+      changeBackgroundColors();
       if (isMenuVisible) closeMobileMenu();
     }
   }, [soundIndex, soundRef, isPlaying, volume]);
